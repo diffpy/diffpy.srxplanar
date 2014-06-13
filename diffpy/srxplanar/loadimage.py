@@ -108,9 +108,11 @@ class LoadImage(object):
         fileset = self.genFileSet(filenames, opendir, includepattern, excludepattern, fullpath)
         return sorted(list(fileset))
 
-    def genFileSet(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False):
+    def genFileSet(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False,
+                   slicemethod=False,basefile=None, start=None, stop=None, step=None):
         '''
         generate the list of file in opendir according to include/exclude pattern
+        or by specifying a start, stop and slice
         
         :param filenames: list of str, list of file name patterns, all files match ANY pattern in this list will be included
         :param opendir: str, the directory to get files
@@ -119,6 +121,13 @@ class LoadImage(object):
         :param excludepattern: list of str, list of wildcard of files that will be blocked,
             any files match ANY patterns in this list will be blocked
         :param fullpath: bool, if true, return the full path of each file
+        :param slicemethod: bool, if true use slice method
+            The slicemethod is designed to have similar outcomes to Fit2d's 'File Series' methods.
+            This produces a set of files which are, within the start stop bounds, and an integer
+            mulitple of step from one another.  The structure could be improved by using a start
+            and stop file and parse the start and stop file numbers from there.  Additionally,
+            this assumes that the defining number is at the end of the file.  Finally, this only
+            handles integer numbers, no more complex numbering schemes.
         
         :return: set of str, a list of filenames
         '''
@@ -133,13 +142,25 @@ class LoadImage(object):
             fileset |= set(fnmatch.filter(filelist, includep))
         for excludep in excludepattern:
             fileset -= set(fnmatch.filter(filelist, excludep))
-        # filter the filenames according to filenames
-        if len(filenames) > 0:
-            fileset1 = set()
-            for filename in filenames:
-                fileset1 |= set(fnmatch.filter(fileset, filename))
-            fileset = fileset1
-        if fullpath:
-            filelist = map(lambda x: os.path.abspath(os.path.join(opendir, x)), fileset)
+        # filter by slicemethod
+        if slicemethod:
+            i=start
+            fileset2=set()
+            while i<=stop:
+                for filename in fileset:
+                    shortfile, fileExtension = os.path.splitext(filename)
+                    if shortfile.endswith(str(i)):
+                        filelist.append(filename)
+                        i+=step
             fileset = set(filelist)
+        else:
+            # filter the filenames according to filenames
+            if len(filenames) > 0:
+                fileset1 = set()
+                for filename in filenames:
+                    fileset1 |= set(fnmatch.filter(fileset, filename))
+                fileset = fileset1
+            if fullpath:
+                filelist = map(lambda x: os.path.abspath(os.path.join(opendir, x)), fileset)
+                fileset = set(filelist)
         return fileset
