@@ -109,7 +109,7 @@ class LoadImage(object):
         return sorted(list(fileset))
 
     def genFileSet(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False,
-                   slicemethod=False,basefile=None, start=None, stop=None, step=None):
+                   slicemethod=False,basefile=None, start=None, stop=None, step=None, zeros=None):
         '''
         generate the list of file in opendir according to include/exclude pattern
         or by specifying a start, stop and slice
@@ -124,10 +124,13 @@ class LoadImage(object):
         :param slicemethod: bool, if true use slice method
             The slicemethod is designed to have similar outcomes to Fit2d's 'File Series' methods.
             This produces a set of files which are, within the start stop bounds, and an integer
-            mulitple of step from one another.  The structure could be improved by using a start
-            and stop file and parse the start and stop file numbers from there.  Additionally,
-            this assumes that the defining number is at the end of the file.  Finally, this only
-            handles integer numbers, no more complex numbering schemes.
+            mulitple of step from one another. This assumes that the defining number is at the end of the file.
+            Finally, this only handles integer numbers, no more complex numbering schemes.
+        :param basefile: str, the filename which is used to build the list of files
+        :param start int, number of the first file to load
+        :param stop int, number of the last file to load
+        :param step int, distance between files in list
+        :param zeros int, leading zeros in filenames
         
         :return: set of str, a list of filenames
         '''
@@ -144,15 +147,14 @@ class LoadImage(object):
             fileset -= set(fnmatch.filter(filelist, excludep))
         # filter by slicemethod
         if slicemethod:
-            i=start
-            fileset2=set()
-            while i<=stop:
-                for filename in fileset:
-                    shortfile, fileExtension = os.path.splitext(filename)
-                    if shortfile.endswith(str(i)):
-                        filelist.append(filename)
-                        i+=step
-            fileset = set(filelist)
+            intrange=range(start, stop+step, step)
+            strrange=[str(x).zfill(5 if zeros is None else zeros) for x in intrange]
+            filelist2=[basefile+x+'.tif' for x in strrange]
+            filelist3=[]
+            for x in filelist2:
+                if os.path.isfile(os.path.join(opendir,x)):
+                    filelist3.append(x)
+            fileset = set(filelist3)
         else:
             # filter the filenames according to filenames
             if len(filenames) > 0:
