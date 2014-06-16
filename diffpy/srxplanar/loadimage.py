@@ -90,7 +90,8 @@ class LoadImage(object):
             image[image < 0] = 0
         return image
 
-    def genFileList(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False):
+    def genFileList(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False,
+                   slicemethod=False,basefile=None, start=None, stop=None, step=None, zeros=None):
         '''
         generate the list of file in opendir according to include/exclude pattern
         
@@ -105,7 +106,8 @@ class LoadImage(object):
         :return: list of str, a list of filenames
         '''
         
-        fileset = self.genFileSet(filenames, opendir, includepattern, excludepattern, fullpath)
+        fileset = self.genFileSet(filenames, opendir, includepattern, excludepattern, fullpath, 
+                                slicemethod, basefile, start, stop, step, zeros)
         return sorted(list(fileset))
 
     def genFileSet(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False,
