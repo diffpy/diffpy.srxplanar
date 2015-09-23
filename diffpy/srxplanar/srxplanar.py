@@ -256,14 +256,14 @@ class SrXplanar(object):
                 self.prepareCalculation(pic=filelist[0])
                 self.integrateFilelist(filelist)
             else:
-                print 'No input files or configurations'
+                print('No input files or configurations')
                 self.config.args.print_help()
         # mask creating
         elif self.config.createmask != '':
             self.createMask()
         # if no config is passed to srxplanar
         else:
-            print 'No input files or configurations'
+            print('No input files or configurations')
             self.config.args.print_help()
         return
 

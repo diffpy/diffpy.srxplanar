@@ -14,13 +14,7 @@
 ##############################################################################
 
 import numpy as np
-import ConfigParser
-import re, os, sys
-from functools import partial
-import argparse
-
 from diffpy.confutils.config import ConfigBase
-from diffpy.confutils.tools import _configPropertyRad, _configPropertyR, _configPropertyRW
 
 _description = \
 '''

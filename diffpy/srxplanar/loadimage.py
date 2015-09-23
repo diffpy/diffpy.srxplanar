@@ -18,7 +18,7 @@ import numpy as np
 import os
 import fnmatch
 import sys
-from diffpy.srxplanar.srxplanarconfig import _configPropertyR
+from diffpy.confutils.tools import _configPropertyR
 from tifffile import imsave as saveImage
 
 try:

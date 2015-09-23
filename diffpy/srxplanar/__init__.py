@@ -14,7 +14,7 @@
 ##############################################################################
 
 # package version
-from diffpy.srxplanar.version import __version__
+# from diffpy.srxplanar.version import __version__
 
 # some convenience imports
 from diffpy.srxplanar.srxplanar import SrXplanar

@@ -14,7 +14,6 @@
 ##############################################################################
 
 import numpy as np
-import scipy.sparse as ssp
 try:
     import fabio
     def openImage(im):
@@ -22,7 +21,7 @@ try:
         return rv.data
 except:
     import tifffile
-    print 'Only tiff or .npy mask is support since fabio is not available'
+    print('Only tiff or .npy mask is support since fabio is not available')
     def openImage(im):
         try:
             rv = tifffile.imread(im)
@@ -33,7 +32,7 @@ except:
 import scipy.ndimage.filters as snf
 import scipy.ndimage.morphology as snm
 import os
-from diffpy.srxplanar.srxplanarconfig import _configPropertyR
+from diffpy.confutils.tools import _configPropertyR
 
 class Mask(object):
     '''
