@@ -23,11 +23,8 @@ easy_install
 '''
 
 
-import ConfigParser
-import re
+from six.moves import configparser
 import os
-import sys
-from functools import partial
 import argparse
 try:
     from collections import OrderedDict
@@ -226,7 +223,7 @@ class ConfigBase(object):
             if ('--configfile' in args) or ('-c' in args):
                 obj = self.args.parse_args(args)
                 rv = obj.configfile
-        if kwargs.has_key('configfile'):
+        if 'configfile' in kwargs:
             rv = kwargs['configfile']
         return rv
 
@@ -315,7 +312,7 @@ class ConfigBase(object):
         :return: string, type of the option 
         '''
         optdata = cls._optdata[optname]
-        if optdata.has_key('t'):
+        if 't' in optdata:
             opttype = optdata['t']
         else:
             value = optdata['d']
@@ -395,7 +392,7 @@ class ConfigBase(object):
         cls._addOptSelfC(optname, optdata)
 
         # add to cls.config
-        secname = optdata['sec'] if optdata.has_key('sec') else 'Others'
+        secname = optdata['sec'] if 'sec' in optdata else 'Others'
         cls._configlist[secname].append(optname)
         if optdata.get('config', 'a') != 'n':
             strvalue = ', '.join(map(str, optdata['d'])) if isinstance(optdata['d'], list) else str(optdata['d'])
@@ -405,14 +402,14 @@ class ConfigBase(object):
             # transform optdata to a dict that can pass to add_argument method
             pargs = dict()
             for key in optdata.keys():
-                if cls._optdatanamedict.has_key(key):
+                if key in cls._optdatanamedict:
                     pargs[cls._optdatanamedict[key]] = optdata[key]
             pargs['default'] = argparse.SUPPRESS
             pargs['type'] = StrConv(opttype)
             # add args
-            if optdata.has_key('f'):
+            if 'f' in optdata:
                 cls.args.add_argument(optname, **pargs)
-            elif optdata.has_key('s'):
+            elif 's' in optdata:
                 cls.args.add_argument('--' + optname, '-' + optdata['s'], **pargs)
             else:
                 cls.args.add_argument('--' + optname, **pargs)
@@ -444,7 +441,7 @@ class ConfigBase(object):
                 optnames += self.config.options(secname)
 
         for optname in optnames:
-            if self._optdata.has_key(optname):
+            if optname in self._optdata:
                 secname = self._optdata[optname]['sec']
                 opttype = self._getTypeStr(optname)
                 optvalue = self.config.get(secname, optname)
@@ -466,7 +463,7 @@ class ConfigBase(object):
                 optnames += self.config.options(secname)
 
         for optname in optnames:
-            if self._optdata.has_key(optname):
+            if optname in self._optdata:
                 secname = self._optdata[optname]['sec']
                 opttype = self._getTypeStr(optname)
                 optvalue = getattr(self, optname)
@@ -485,7 +482,7 @@ class ConfigBase(object):
         obj = self.args.parse_args(pargs)
         changedargs = obj.__dict__.keys()
         for optname in changedargs:
-            if self._optdata.has_key(optname):
+            if optname in self._optdata:
                 setattr(self, optname, getattr(obj, optname))
         # update self
         if len(changedargs) > 0:
@@ -501,7 +498,7 @@ class ConfigBase(object):
         if kwargs != {}:
             changedargs = []
             for optname, optvalue in kwargs.iteritems():
-                if self._optdata.has_key(optname):
+                if optname in self._optdata:
                     setattr(self, optname, optvalue)
                     changedargs.append(optname)
             # update self
@@ -591,7 +588,7 @@ class ConfigBase(object):
 
     def writeConfig(self, filename, mode='short', changeconfigfile=True):
         '''
-        write config to file. the file is compatiable with python package ConfigParser
+        write config to file. the file is compatiable with python package configparser
         
         :param filename: string, name of file
         :param mode: string, 'short' or 'full' ('s' or 'f').
@@ -670,7 +667,7 @@ class ConfigBase(object):
         if optnames == None:
             optnames = self._optdata.keys()
         for optname in optnames:
-            if self._optdata.has_key(optname):
+            if optname in self._optdata:
                 setattr(self, optname, self._optdata[optname]['d'])
         self._updateSelf()
         return
@@ -688,7 +685,7 @@ class ConfigBase(object):
         '''
         cls._preInitConfigClass()
 
-        cls.config = ConfigParser.ConfigParser(dict_type=OrderedDict)
+        cls.config = configparser.ConfigParser(dict_type=OrderedDict)
         cls.args = argparse.ArgumentParser(description=cls._description,
                                               epilog=cls._epilog,
                                               formatter_class=argparse.RawDescriptionHelpFormatter)

@@ -14,9 +14,8 @@
 ##############################################################################
 
 import numpy as np
-import scipy.io
 import os
-from diffpy.srxplanar.srxplanarconfig import _configPropertyR
+from diffpy.confutils.tools import _configPropertyR
 
 class SaveResults(object):
     '''

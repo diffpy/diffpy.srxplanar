@@ -38,8 +38,3 @@ nosetests.xml
 .project
 .pydevproject
 .settings
-
-# version information
-setup.cfg
-/diffpy/srxplanar/version.cfg
-/diffpy/confutils/version.cfg
