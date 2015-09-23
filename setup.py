@@ -10,10 +10,14 @@ Packages:   diffpy.srxplanar
 
 import os
 from setuptools import setup, find_packages
+import versioneer
+
 
 # define distribution
 setup_args = dict(
         name="diffpy.srxplanar",
+        version=versioneer.get_version(),
+        cmdclass=versioneer.get_cmdclass(),
         namespace_packages=['diffpy'],
         packages=find_packages(),
         include_package_data=True,

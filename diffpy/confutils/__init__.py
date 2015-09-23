@@ -13,8 +13,9 @@
 #
 ##############################################################################
 
-# package version
-# from diffpy.srxplanar.version import __version__
+from .._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
 
 # some convenience imports
 from diffpy.confutils.config import ConfigBase, ConfigBase
