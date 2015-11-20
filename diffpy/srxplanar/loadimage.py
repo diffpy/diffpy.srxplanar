@@ -91,7 +91,8 @@ class LoadImage(object):
             image[image < 0] = 0
         return image
 
-    def genFileList(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False):
+    def genFileList(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False,
+                   slicemethod=False,basefile=None, start=None, stop=None, step=None, zeros=None):
         '''
         generate the list of file in opendir according to include/exclude pattern
         
@@ -106,12 +107,15 @@ class LoadImage(object):
         :return: list of str, a list of filenames
         '''
         
-        fileset = self.genFileSet(filenames, opendir, includepattern, excludepattern, fullpath)
+        fileset = self.genFileSet(filenames, opendir, includepattern, excludepattern, fullpath, 
+                                slicemethod, basefile, start, stop, step, zeros)
         return sorted(list(fileset))
 
-    def genFileSet(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False):
+    def genFileSet(self, filenames=None, opendir=None, includepattern=None, excludepattern=None, fullpath=False,
+                   slicemethod=False,basefile=None, start=None, stop=None, step=None, zeros=None):
         '''
         generate the list of file in opendir according to include/exclude pattern
+        or by specifying a start, stop and slice
         
         :param filenames: list of str, list of file name patterns, all files match ANY pattern in this list will be included
         :param opendir: str, the directory to get files
@@ -120,6 +124,16 @@ class LoadImage(object):
         :param excludepattern: list of str, list of wildcard of files that will be blocked,
             any files match ANY patterns in this list will be blocked
         :param fullpath: bool, if true, return the full path of each file
+        :param slicemethod: bool, if true use slice method
+            The slicemethod is designed to have similar outcomes to Fit2d's 'File Series' methods.
+            This produces a set of files which are, within the start stop bounds, and an integer
+            mulitple of step from one another. This assumes that the defining number is at the end of the file.
+            Finally, this only handles integer numbers, no more complex numbering schemes.
+        :param basefile: str, the filename which is used to build the list of files
+        :param start int, number of the first file to load
+        :param stop int, number of the last file to load
+        :param step int, distance between files in list
+        :param zeros int, leading zeros in filenames
         
         :return: set of str, a list of filenames
         '''
@@ -134,13 +148,24 @@ class LoadImage(object):
             fileset |= set(fnmatch.filter(filelist, includep))
         for excludep in excludepattern:
             fileset -= set(fnmatch.filter(filelist, excludep))
-        # filter the filenames according to filenames
-        if len(filenames) > 0:
-            fileset1 = set()
-            for filename in filenames:
-                fileset1 |= set(fnmatch.filter(fileset, filename))
-            fileset = fileset1
-        if fullpath:
-            filelist = map(lambda x: os.path.abspath(os.path.join(opendir, x)), fileset)
-            fileset = set(filelist)
+        # filter by slicemethod
+        if slicemethod:
+            intrange=range(start, stop+step, step)
+            strrange=[str(x).zfill(5 if zeros is None else zeros) for x in intrange]
+            filelist2=[basefile+x+'.tif' for x in strrange]
+            filelist3=[]
+            for x in filelist2:
+                if os.path.isfile(os.path.join(opendir,x)):
+                    filelist3.append(x)
+            fileset = set(filelist3)
+        else:
+            # filter the filenames according to filenames
+            if len(filenames) > 0:
+                fileset1 = set()
+                for filename in filenames:
+                    fileset1 |= set(fnmatch.filter(fileset, filename))
+                fileset = fileset1
+            if fullpath:
+                filelist = map(lambda x: os.path.abspath(os.path.join(opendir, x)), fileset)
+                fileset = set(filelist)
         return fileset
