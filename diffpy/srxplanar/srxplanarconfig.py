@@ -14,7 +14,7 @@
 ##############################################################################
 
 import numpy as np
-import ConfigParser
+from configparser import ConfigParser
 import re, os, sys
 from functools import partial
 import argparse
