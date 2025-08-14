@@ -17,7 +17,7 @@
 """
 
 from pkg_resources import resource_stream
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 
 # obtain version information from the version.cfg file
 cp = SafeConfigParser()

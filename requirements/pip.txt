@@ -2,3 +2,4 @@ numpy
 scipy
 fabio
 tiffile
+configparser

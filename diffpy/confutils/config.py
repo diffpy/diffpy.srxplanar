@@ -23,7 +23,7 @@ easy_install
 '''
 
 
-import ConfigParser
+from configparser import ConfigParser
 import re
 import os
 import sys
