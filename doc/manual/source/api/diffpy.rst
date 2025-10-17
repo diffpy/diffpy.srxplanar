@@ -5,4 +5,3 @@ diffpy Package
 
     diffpy.confutils
     diffpy.srxplanar
-

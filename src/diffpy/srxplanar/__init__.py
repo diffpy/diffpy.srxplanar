@@ -13,12 +13,12 @@
 #
 ##############################################################################
 
-# package version
-from diffpy.srxplanar.version import __version__
-
 # some convenience imports
 from diffpy.srxplanar.srxplanar import SrXplanar
 from diffpy.srxplanar.srxplanarconfig import SrXplanarConfig
+
+# package version
+from diffpy.srxplanar.version import __version__
 
 # unit tests
 
