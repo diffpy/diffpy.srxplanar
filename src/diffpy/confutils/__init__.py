@@ -13,10 +13,10 @@
 #
 ##############################################################################
 
+# some convenience imports
+from diffpy.confutils.config import ConfigBase
+
 # package version
 from diffpy.srxplanar.version import __version__
-
-# some convenience imports
-from diffpy.confutils.config import ConfigBase, ConfigBase
 
 # End of file

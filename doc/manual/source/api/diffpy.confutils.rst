@@ -32,4 +32,3 @@ confutils Package
     :members:
     :undoc-members:
     :show-inheritance:
-
