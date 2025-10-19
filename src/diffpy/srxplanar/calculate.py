@@ -126,8 +126,9 @@ class Calculate(object):
         and then take average,
 
         :param pic: 2D array, array of raw counts, corrections should be
-            already applied :return: 2d array, [tthorq, intensity,
-            unceratinty] or [tthorq, intensity]
+            already applied
+        :return: 2d array, [tthorq, intensity, unceratinty] or [tthorq,
+            intensity]
         """
 
         intensity = self.calculateIntensity(pic)
@@ -173,7 +174,8 @@ class Calculate(object):
         """Calculate the 1D intensity.
 
         :param pic: 2D array, array of raw counts, raw counts should be
-            corrected :return: 1d array, 1D integrated intensity
+            corrected
+        :return: 1d array, 1D integrated intensity
         """
 
         maskedmatrix, pic = self.getMaskedmatrixPic(pic)
@@ -185,8 +187,8 @@ class Calculate(object):
         """Calculate the 1D intensity.
 
         :param pic: 2D array, array of raw counts, corrections should be
-            already applied :return: 1d array, variance of integrated
-            intensity
+            already applied
+        :return: 1d array, variance of integrated intensity
         """
         maskedmatrix = self.getMaskedmatrixPic()
 
