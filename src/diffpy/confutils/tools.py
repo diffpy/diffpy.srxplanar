@@ -49,9 +49,9 @@ def _configPropertyRW(name):
     read and write
     """
     rv = property(
-        fget=lambda self: getattr(self.config, nm),
-        fset=lambda self, value: setattr(self.config, nm, value),
-        fdel=lambda self: delattr(self, nm),
+        fget=lambda self: getattr(self.config, name),
+        fset=lambda self, value: setattr(self.config, name, value),
+        fdel=lambda self: delattr(self, name),
         doc="attribute forwarded to self.config, read/write",
     )
     return rv
@@ -64,9 +64,9 @@ def str2bool(v):
 
 def opt2Str(opttype, optvalue):
     """Turn the value of one option to string, according to the option
-    type list of values are truned into "value1, value2, value3...".
+    type list of values are turned into "value1, value2, value3...".
 
-    :param opttype: string, type of opitons, for example 'str' or
+    :param opttype: string, type of options, for example 'str' or
         'intlist'
     :param optvalue: value of the option
     :return: string, usually stored in ConfigBase.config
@@ -105,7 +105,7 @@ def str2Opt(opttype, optvalue):
     """Convert the string to value of one option, according to the
     option type.
 
-    :param opttype: string, type of opitons, for example 'str' or
+    :param opttype: string, type of options, for example 'str' or
         'intlist'
     :param optvalue: string, value of the option
     :return: value of the option, usually stored in ConfigBase.config
@@ -113,7 +113,7 @@ def str2Opt(opttype, optvalue):
     # base converter
     conv = StrConv(opttype)
     if opttype.endswith("list"):
-        temp = re.split("\s*,\s*", optvalue)
+        temp = re.split(r"\s*,\s*", optvalue)
         rv = map(conv, temp) if len(temp) > 0 else []
     else:
         rv = conv(optvalue)
@@ -156,7 +156,7 @@ def checkCRC32(filename):
     """
     try:
         fd = open(filename, "rb")
-    except:
+    except Exception:
         return "Read error"
     eachLine = fd.readline()
     prev = 0
@@ -175,7 +175,7 @@ def checkMD5(filename, blocksize=65536):
     """
     try:
         fd = open(filename, "rb")
-    except:
+    except Exception:
         return "Read error"
     buf = fd.read(blocksize)
     md5 = hashlib.md5()

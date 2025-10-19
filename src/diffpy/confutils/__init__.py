@@ -14,9 +14,9 @@
 ##############################################################################
 
 # some convenience imports
-from diffpy.confutils.config import ConfigBase
+from diffpy.confutils.config import ConfigBase  # noqa: F401
 
 # package version
-from diffpy.srxplanar.version import __version__
+from diffpy.srxplanar.version import __version__  # noqa: F401
 
 # End of file
