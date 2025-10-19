@@ -18,7 +18,6 @@ import os
 import sys
 
 import numpy as np
-import scipy.sparse as ssp
 
 from diffpy.srxplanar.calculate import Calculate
 from diffpy.srxplanar.loadimage import LoadImage
@@ -48,7 +47,7 @@ class SrXplanar(object):
         :param kwargs: you can use like 'xbeamcenter=1024' or a dict to
             update the value of xbeamcenter
         """
-        if srxplanarconfig != None:
+        if srxplanarconfig is not None:
             self.config = srxplanarconfig
             self.config.updateConfig(filename=configfile, args=args, **kwargs)
         else:
@@ -100,16 +99,16 @@ class SrXplanar(object):
         """
         dynamicmask = self.mask.dynamicMask(self.pic, dymask=self.staticmask)
 
-        if dynamicmask != None:
+        if dynamicmask is not None:
             mask = np.logical_or(self.staticmask, dynamicmask)
-            if extramask != None:
+            if extramask is not None:
                 mask = np.logical_or(mask, extramask)
-        elif extramask != None:
+        elif extramask is not None:
             mask = np.logical_or(self.staticmask, extramask)
         else:
             mask = self.staticmask
 
-        if (dynamicmask != None) or (extramask != None):
+        if (dynamicmask is not None) or (extramask is not None):
             self.calculate.genIntegrationInds(mask)
         return
 
@@ -123,11 +122,11 @@ class SrXplanar(object):
         :return: string, name of file to be saved
         """
         rv = "output"
-        if self.config.output != None and self.config.output != "":
+        if self.config.output is not None and self.config.output != "":
             rv = self.config.output
-        elif filename != None:
+        elif filename is not None:
             rv = filename
-        elif imagename != None and isinstance(imagename, (str, unicode)):
+        elif imagename is not None and isinstance(imagename, str):
             rv = imagename
         return rv
 
@@ -136,14 +135,17 @@ class SrXplanar(object):
 
         :param image: could be a string, a list of string or a 2d array,
             if string, load the image file using the string as the path.
-            if list of string, load the image files using the string as their path
-            and sum them togethor
+            if list of string, load the image files using the string
+            as their path and sum them togethor
             if 2d array, use that array directly
         :param flip: flip the image/2d array,
-            if None: flip on the string/list of string, not flip on the 2d array
+            if None: flip on the string/list of string,
+            not flip on the 2d array
             Flip behavior is controlled in self.config
-        :param correction: apply correction to the returned 2d array
-            if None: correct on the string/list of string, not correct on the 2d array
+        :param correction: apply correction to
+            the returned 2d array
+            if None: correct on the string/list of string,
+            not correct on the 2d array
 
         :return: 2d array of image
         """
@@ -152,9 +154,9 @@ class SrXplanar(object):
             for imagefile in image:
                 rv += self._getPic(imagefile)
             rv /= len(image)
-        elif isinstance(image, (str, unicode)):
+        elif isinstance(image, str):
             rv = self.loadimage.loadImage(image)
-            if correction == None or correction == True:
+            if correction is None or correction is True:
                 ce = self.config.cropedges
                 rv[ce[2] : -ce[3], ce[0] : -ce[1]] = (
                     rv[ce[2] : -ce[3], ce[0] : -ce[1]] * self.correction
@@ -162,9 +164,9 @@ class SrXplanar(object):
                 # rv *= self.correction
         else:
             rv = image
-            if flip == True:
+            if flip is True:
                 rv = self.loadimage.flipImage(rv)
-            if correction == True:
+            if correction is True:
                 # rv *= self.correction
                 ce = self.config.cropedges
                 rv[ce[2] : -ce[3], ce[0] : -ce[1]] = (
@@ -190,17 +192,21 @@ class SrXplanar(object):
             if str, then read image file using it as file name.
             if 2d array, integrate this 2d array.
         :param savename: str, name of file to save
-        :param savefile: boolean, if True, save file to disk, if False, do not save file to disk
+        :param savefile: boolean, if True, save file to disk,
+        if False, do not save file to disk
         :param flip: flip the image/2d array,
-            if None: flip on the string/list of string, not flip on the 2d array
+            if None: flip on the string/list of string,
+            not flip on the 2d array
             Flip behavior is controlled in self.config
         :param correction: apply correction to the returned 2d array
-            if None: correct on the string/list of string, not correct on the 2d array
+            if None: correct on the string/list of string,
+            not correct on the 2d array
         :param extramask: 2d array, extra mask applied in integration
 
-        :return: dict, rv['chi'] is a 2d array of integrated intensity, shape is (2, len of intensity)
-            or (3, len of intensity) in [tth or q, intensity, (uncertainty)]. rv['filename'] is the
-            name of file to save to disk
+        :return: dict, rv['chi'] is a 2d array of integrated intensity,
+            shape is (2, len of intensity) or (3, len of intensity)
+            in [tth or q, intensity, (uncertainty)].
+            rv['filename'] is the name of file to save to disk
         """
         rv = {}
         self.pic = self._getPic(image, flip, correction)
@@ -233,20 +239,23 @@ class SrXplanar(object):
             use self.config.summation
         :param filename: file name of output file
         :param flip: flip the image/2d array,
-            if None: flip on the string/list of string, not flip on the 2d array
+            if None: flip on the string/list of string,
+            not flip on the 2d array
             Flip behavior is controlled in self.config
         :param correction: apply correction to the returned 2d array
-            if None: correct on the string/list of string, not correct on the 2d array
+            if None: correct on the string/list of string,
+            not correct on the 2d array
         :param extramask: 2d array, extra mask applied in integration
 
-        :return: list of dict, in each dict, rv['chi'] is a 2d array of integrated intensity, shape is (2, len of intensity)
-            or (3, len of intensity) as [tth or q, intensity, (uncertainty)]. rv['filename'] is the
-            name of file to save to disk
+        :return: list of dict, in each dict, rv['chi'] is a
+            2d array of integrated intensity, shape is (2, len of intensity)
+            or (3, len of intensity) as [tth or q, intensity, (uncertainty)].
+            rv['filename'] is the name of file to save to disk
         """
-        summation = self.config.summation if summation == None else summation
+        summation = self.config.summation if summation is None else summation
         if (summation) and (len(filelist) > 1):
             image = self._getPic(filelist, flip, correction)
-            if filename == None:
+            if filename is None:
                 if isinstance(filelist[-1], str):
                     filename = os.path.splitext(filelist[-1])[0] + "_sum.chi"
                 else:
@@ -258,7 +267,7 @@ class SrXplanar(object):
             i = 0
             rv = []
             for imagefile in filelist:
-                if filename == None:
+                if filename is None:
                     rvv = self.integrate(
                         imagefile,
                         flip=flip,
@@ -315,17 +324,17 @@ class SrXplanar(object):
             Mask module for detail
         :return: 2d array, 1 stands for masked pixel here
         """
-        filename = self.config.createmask if filename == None else filename
+        filename = self.config.createmask if filename is None else filename
         filename = "mask.npy" if filename == "" else filename
-        addmask = self.config.addmask if addmask == None else addmask
+        addmask = self.config.addmask if addmask is None else addmask
         if not hasattr(self, "mask"):
             self.mask = Mask(self.config)
         if not hasattr(self, "loadimage"):
             self.loadimage = LoadImage(self.config)
-        if pic == None:
+        if pic is None:
             filelist = self.loadimage.genFileList()
             if hasattr(self, "pic"):
-                if self.pic != None:
+                if self.pic is not None:
                     pic = self.pic
                 else:
                     pic = (
