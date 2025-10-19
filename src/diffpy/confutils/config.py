@@ -23,34 +23,23 @@ easy_install
 
 import argparse
 import os
-import re
-import sys
 from configparser import ConfigParser
-from functools import partial
 
 try:
     from collections import OrderedDict
-except:
+except ImportError:
     from ordereddict import OrderedDict
 
-from diffpy.confutils.tools import (
-    FakeConfigFile,
-    StrConv,
-    _configPropertyR,
-    _configPropertyRad,
-    _configPropertyRW,
-    opt2Str,
-    str2bool,
-    str2Opt,
-)
+from diffpy.confutils.tools import FakeConfigFile, StrConv, opt2Str, str2Opt
 
 
 class ConfigBase(object):
     """_optdatalist_default, _optdatalist are metadata used to
     initialize the options, see below for examples.
 
-    options presents in --help (in cmd), config file, headers have same order as
-    in these list, so arrange them in right order here.
+    options presents in --help (in cmd), config file,
+    headers have same order as in these list,
+    so arrange them in right order here.
 
     optional args to control if the options presents in args, config file or
     file header
@@ -129,7 +118,10 @@ class ConfigBase(object):
                 "sec": "Control",
                 "config": "n",
                 "header": "n",
-                "h": "create a config file according to default or current values",
+                "h": (
+                    "create a config file according to default"
+                    "or current values"
+                ),
                 "d": "",
             },
         ],
@@ -206,7 +198,7 @@ class ConfigBase(object):
             "fliphorizontal",
             {
                 "sec": "Beamline",
-                "h": "filp the image horizontally",
+                "h": "flip the image horizontally",
                 "n": "?",
                 "co": True,
                 "d": False,
@@ -228,8 +220,13 @@ class ConfigBase(object):
                 "sec": "Others",
                 "config": "f",
                 "header": "f",
-                "h": "mask the edge pixels, first four means the number of pixels masked in each edge \
-                (left, right, top, bottom), the last one is the radius of a region masked around the corner",
+                "h": (
+                    "mask the edge pixels, first four means"
+                    " the number of pixels masked in each edge \n"
+                    " (left, right, top, bottom),"
+                    " the last one is the radius of a region"
+                    " masked around the corner"
+                ),
                 "n": 5,
                 "d": [1, 1, 1, 1, 50],
             },
@@ -266,7 +263,7 @@ class ConfigBase(object):
 
         # update config, first detect if a default config should be load
         filename = self._findDefaultConfigFile(filename, args, **kwargs)
-        rv = self.updateConfig(filename, args, **kwargs)
+        self.updateConfig(filename, args, **kwargs)
         return
 
     # example, overload it
@@ -293,9 +290,9 @@ class ConfigBase(object):
         :return: name of config file if found, otherwise None
         """
         rv = None
-        if filename != None:
+        if filename is not None:
             rv = filename
-        if args != None:
+        if args is not None:
             if ("--configfile" in args) or ("-c" in args):
                 obj = self.args.parse_args(args)
                 rv = obj.configfile
@@ -317,9 +314,9 @@ class ConfigBase(object):
         return: name of config file if found, otherwise None
         """
         rv = self._findConfigFile(filename, args, **kwargs)
-        if rv == None:
+        if rv is None:
             for dconf in self._defaultdata["configfile"]:
-                if (os.path.exists(dconf)) and (rv == None):
+                if (os.path.exists(dconf)) and (rv is None):
                     rv = dconf
         return rv
 
@@ -500,7 +497,7 @@ class ConfigBase(object):
             value copied from self.config to self.*option*'. Set None to
             update all
         """
-        if optnames != None:
+        if optnames is not None:
             optnames = optnames if isinstance(optnames, list) else [optnames]
         else:
             optnames = []
@@ -522,7 +519,7 @@ class ConfigBase(object):
             copied from self.*option* to self.config. Set None to update
             all
         """
-        if optnames != None:
+        if optnames is not None:
             optnames = optnames if isinstance(optnames, list) else [optnames]
         else:
             optnames = []
@@ -543,8 +540,8 @@ class ConfigBase(object):
         """Parse args and update the value in self.*option*, this will
         call the self.args() to parse args,
 
-        :param pargs: list of string, arguments to parse, usually
-            comming from sys.argv
+        :param pargs: list of string, arguments to parse, usually coming
+            from sys.argv
         """
         obj = self.args.parse_args(pargs)
         changedargs = obj.__dict__.keys()
@@ -576,7 +573,7 @@ class ConfigBase(object):
 
         :param filename: str, file name of config file (include path)
         """
-        if filename != None:
+        if filename is not None:
             filename = os.path.abspath(filename)
             if os.path.exists(filename):
                 self.configfile = filename
@@ -608,16 +605,16 @@ class ConfigBase(object):
         self._preUpdateConfig(**kwargs)
 
         filename = self._findConfigFile(filename, args, **kwargs)
-        if filename != None:
+        if filename is not None:
             rv = self.parseConfigFile(filename)
-        if args != None:
+        if args is not None:
             rv = self.parseArgs(args)
         if kwargs != {}:
             rv = self.parseKwargs(**kwargs)
 
         if (
-            (filename == None)
-            and ((args == None) or (args == []))
+            (filename is None)
+            and ((args is None) or (args == []))
             and (kwargs == {})
         ):
             rv = self._updateSelf()
@@ -641,18 +638,20 @@ class ConfigBase(object):
 
     ###########################################################################
     def _createConfigFile(self):
-        """Write output config file if specfied in configuration the
+        """Write output config file if specified in configuration the
         filename is specified by self.createconfig."""
-        if (self.createconfig != "") and (self.createconfig != None):
+        if (self.createconfig != "") and (self.createconfig is not None):
             self.writeConfig(self.createconfig, "short")
             self.createconfig = ""
-        if (self.createconfigfull != "") and (self.createconfigfull != None):
+        if (self.createconfigfull != "") and (
+            self.createconfigfull is not None
+        ):
             self.writeConfig(self.createconfigfull, "full")
             self.createconfigfull = ""
         return
 
     def writeConfig(self, filename, mode="short", changeconfigfile=True):
-        """Write config to file. the file is compatiable with python
+        """Write config to file. the file is compatible with python
         package ConfigParser.
 
         :param filename: string, name of file
@@ -663,7 +662,7 @@ class ConfigBase(object):
         if changeconfigfile:
             self.configfile = os.path.abspath(filename)
         self._updateSelf()
-        # func decide if wirte the option to config according to mode
+        # func decide if write the option to config according to mode
         # options not present in self._optdata will not be written to config
         if mode.startswith("s"):
             mcond = (
@@ -707,15 +706,15 @@ class ConfigBase(object):
             mode, all options with 'a' will be written, in full mode,
             all options with 'a' or 'f' will be written
         :return: string, lines with line break that can be directly
-            writen to a text file
+            written to a text file
         """
 
         lines = []
         title = "# %s #" % (
-            self._defaultdata["headertitle"] if title == None else title
+            self._defaultdata["headertitle"] if title is None else title
         )
         lines.append(title)
-        # func decide if wirte the option to header according to mode
+        # func decide if write the option to header according to mode
         # options not present in self._optdata will not be written to header
         if mode.startswith("s"):
             mcond = (
@@ -757,7 +756,7 @@ class ConfigBase(object):
         :param optnames: list of str, name of options to reset, None for
             all options
         """
-        if optnames == None:
+        if optnames is None:
             optnames = self._optdata.keys()
         for optname in optnames:
             if self._optdata.has_key(optname):
@@ -766,14 +765,15 @@ class ConfigBase(object):
         return
 
     ###########################################################################
-    # IMPORTANT call this method if you want to add options as class attributes!!!
+    # IMPORTANT call this method if you want to add options
+    # as class attributes!!!
 
     @classmethod
     def initConfigClass(cls):
         """Init config class and add options to class.
 
-        IMPORTANT: call this method after you define the metadata of your config
-        class to add options as class attributes!!!
+        IMPORTANT: call this method after you define
+        the metadata of your config class to add options as class attributes!!!
         """
         cls._preInitConfigClass()
 
