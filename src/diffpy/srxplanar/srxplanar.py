@@ -136,7 +136,7 @@ class SrXplanar(object):
         :param image: could be a string, a list of string or a 2d array,
             if string, load the image file using the string as the path.
             if list of strings, load the image files using the string
-            as their path and sum them togethor
+            as their path and sum them together
             if 2d array, use that array directly
         :param flip: flip the image/2d array,
             if None: flip on the string/list of strings,
