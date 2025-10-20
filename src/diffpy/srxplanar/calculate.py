@@ -15,8 +15,6 @@
 
 import numpy as np
 import scipy.ndimage.filters as snf
-import scipy.ndimage.morphology as snm
-import scipy.sparse as ssp
 
 from diffpy.srxplanar.srxplanarconfig import _configPropertyR
 
@@ -53,7 +51,8 @@ class Calculate(object):
     extracrop = _configPropertyR("extracrop")
 
     def __init__(self, p):
-        # create parameter proxy, so that parameters can be accessed by self.parametername in read-only mode
+        # create parameter proxy, so that parameters can be
+        # accessed by self.parametername in read-only mode
         self.config = p
         self.prepareCalculation()
         return
@@ -106,7 +105,7 @@ class Calculate(object):
         :return: self.bin_number
         """
         self.maskedmatrix = np.array(self.tthorqmatrix)
-        if mask == None:
+        if mask is None:
             # mask = np.zeros((self.ydimension, self.xdimension), dtype=bool)
             mask = np.zeros((len(self.yr), len(self.xr)), dtype=bool)
         ce = self.cropedges
@@ -114,8 +113,11 @@ class Calculate(object):
         self.maskedmatrix[mask] = 1000.0
 
         # extra crop
-        maskedmatrix = self.getMaskedmatrixPic()
-        # self.bin_number = np.array(np.histogram(maskedmatrix, self.bin_edges)[0], dtype=float)
+        self.getMaskedmatrixPic()
+        # self.bin_number = np.array(
+        #     np.histogram(maskedmatrix, self.bin_edges)[0],
+        #     dtype=float,
+        # )
         # self.bin_number[self.bin_number <= 0] = 1
         return  # self.bin_number
 
@@ -123,9 +125,10 @@ class Calculate(object):
         """2D to 1D image integration, intensity of pixels are binned
         and then take average,
 
-        :param pic: 2D array, array of raw counts, corrections hould be
-            already applied :retrun: 2d array, [tthorq, intensity,
-            unceratinty] or [tthorq, intensity]
+        :param pic: 2D array, array of raw counts, corrections should be
+            already applied
+        :return: 2d array, [tthorq, intensity, unceratinty] or [tthorq,
+            intensity]
         """
 
         intensity = self.calculateIntensity(pic)
@@ -159,7 +162,7 @@ class Calculate(object):
             )
             self.bin_number[self.bin_number <= 0] = 1
 
-        if pic != None:
+        if pic is not None:
             ps = [max(s1, s2) for s1, s2 in zip(ce, ec)]
             rv = (
                 self.maskedmatrix[s[2] : s[3], s[0] : s[1]],
@@ -171,7 +174,8 @@ class Calculate(object):
         """Calculate the 1D intensity.
 
         :param pic: 2D array, array of raw counts, raw counts should be
-            corrected :retrun: 1d array, 1D integrated intensity
+            corrected
+        :return: 1d array, 1D integrated intensity
         """
 
         maskedmatrix, pic = self.getMaskedmatrixPic(pic)
@@ -182,9 +186,9 @@ class Calculate(object):
     def calculateVariance(self, pic):
         """Calculate the 1D intensity.
 
-        :param pic: 2D array, array of raw counts, corrections hould be
-            already applied :retrun: 1d array, variance of integrated
-            intensity
+        :param pic: 2D array, array of raw counts, corrections should be
+            already applied
+        :return: 1d array, variance of integrated intensity
         """
         maskedmatrix = self.getMaskedmatrixPic()
 
@@ -196,9 +200,9 @@ class Calculate(object):
 
     def calculateVarianceLocal(self, pic):
         """Calculate the variance of raw counts of each pixel are
-        calculated according to their loacl variance.
+        calculated according to their local variance.
 
-        :param pic: 2d array, 2d image array, corrections hould be
+        :param pic: 2d array, 2d image array, corrections should be
             already applied
         :return: 2d array, variance of each pixel
         """
@@ -251,7 +255,10 @@ class Calculate(object):
         sourceyr = self.distance * sint * sinr
         sourcezr = self.distance * cost
 
-        # tthmatrix1 = np.zeros((self.ydimension, self.xdimension), dtype=float)
+        # tthmatrix1 = np.zeros(
+        #     (self.ydimension, self.xdimension),
+        #     dtype=float,
+        # )
         tthmatrix1 = np.zeros((len(self.yr), len(self.xr)), dtype=float)
         tthmatrix1 += ((-self.xr + sourcexr) * sourcexr).reshape(
             1, len(self.xr)
@@ -277,7 +284,10 @@ class Calculate(object):
         sourceyr = self.distance * sint * sinr
         sourcezr = self.distance * cost
 
-        # tthmatrix1 = np.zeros((self.ydimension, self.xdimension), dtype=float)
+        # tthmatrix1 = np.zeros(
+        #     (self.ydimension, self.xdimension),
+        #     dtype=float,
+        # )
         tthmatrix1 = np.zeros((len(self.yr), len(self.xr)), dtype=float)
         tthmatrix1 += ((-self.xr + sourcexr) * sourcexr).reshape(
             1, len(self.xr)
@@ -322,7 +332,11 @@ class Calculate(object):
         :return: 2d array, correction matrix to apply on the image
         """
         if self.polcorrectionenable:
-            # tthmatrix = self.tthorqmatrix if self.integrationspace == 'twotheta' else self.genTTHMatrix()
+            # tthmatrix = (
+            #     self.tthorqmatrix
+            #     if self.integrationspace == "twotheta"
+            #     else self.genTTHMatrix()
+            # )
             tthmatrix = self.tthmatrix
             azimuthmatrix = self.azimuthmatrix
             p = 0.5 * (1 + (np.cos(tthmatrix)) ** 2)

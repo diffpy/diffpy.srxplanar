@@ -14,11 +14,11 @@
 ##############################################################################
 
 # some convenience imports
-from diffpy.srxplanar.srxplanar import SrXplanar
-from diffpy.srxplanar.srxplanarconfig import SrXplanarConfig
+from diffpy.srxplanar.srxplanar import SrXplanar  # noqa: F401
+from diffpy.srxplanar.srxplanarconfig import SrXplanarConfig  # noqa: F401
 
 # package version
-from diffpy.srxplanar.version import __version__
+from diffpy.srxplanar.version import __version__  # noqa: F401
 
 # unit tests
 

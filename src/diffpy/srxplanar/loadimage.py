@@ -15,11 +15,9 @@
 
 import fnmatch
 import os
-import sys
 import time
 
 import numpy as np
-from tifffile import imsave as saveImage
 
 from diffpy.srxplanar.srxplanarconfig import _configPropertyR
 
@@ -30,7 +28,7 @@ try:
         rv = fabio.openimage.openimage(im)
         return rv.data
 
-except:
+except ImportError:
     import tifffile
 
     def openImage(im):
@@ -88,7 +86,7 @@ class LoadImage(object):
                     else:
                         image = openImage(filenamefull)
                     i = 10
-                except:
+                except FileNotFoundError:
                     i = i + 1
                     time.sleep(0.5)
             image = self.flipImage(image)
@@ -149,13 +147,13 @@ class LoadImage(object):
             file
         :return: set of str, a list of filenames
         """
-        filenames = self.filenames if filenames == None else filenames
-        opendir = self.opendirectory if opendir == None else opendir
+        filenames = self.filenames if filenames is None else filenames
+        opendir = self.opendirectory if opendir is None else opendir
         includepattern = (
-            self.includepattern if includepattern == None else includepattern
+            self.includepattern if includepattern is None else includepattern
         )
         excludepattern = (
-            self.excludepattern if excludepattern == None else excludepattern
+            self.excludepattern if excludepattern is None else excludepattern
         )
         # filter the filenames according to include and exclude pattern
         filelist = os.listdir(opendir)
