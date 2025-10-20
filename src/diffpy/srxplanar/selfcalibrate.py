@@ -15,7 +15,6 @@ try:
 except ImportError:
     try:
         import matplotlib.pyplot as plt
-        import PyQt4  # noqa: F401
 
         mplenabled = True
     except ImportError:

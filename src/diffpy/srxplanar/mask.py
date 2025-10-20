@@ -30,7 +30,7 @@ except ImportError:
     def openImage(im):
         try:
             rv = tifffile.imread(im)
-        except ValueError:
+        except (ValueError, OSError):
             rv = 0
         return rv
 
