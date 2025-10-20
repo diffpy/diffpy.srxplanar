@@ -1,4 +1,4 @@
-# SrXplanar configration #
+# SrXplanar configuration #
 [Experiment]
 addmask = edgemask
 integrationspace = twotheta

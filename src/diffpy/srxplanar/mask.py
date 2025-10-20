@@ -47,7 +47,7 @@ class Mask(object):
     """Provide methods for mask generation, including:
 
     static mask: tif mask, npy mask
-    dymanic mask: masking dark pixels, bright pixels
+    dynamic mask: masking dark pixels, bright pixels
     """
 
     xdimension = _configPropertyR("xdimension")
@@ -105,8 +105,9 @@ class Mask(object):
         """Create a dynamic mask according to image array. This mask
         changes for different images.
 
-        :param pic: 2d array, image array to be processed :parma dymask:
-            2d array, mask array used in average mask calculation
+        :param pic: 2d array, image array to be processed
+        :param dymask: 2d array, mask array used in average mask
+            calculation
         :param brightpixelmask: pixels with much lower intensity compare
             to adjacent pixels will be masked
         :param darkpixelmask: pixels with much higher intensity compare
@@ -257,8 +258,8 @@ class Mask(object):
     def saveMask(self, filename, pic=None, addmask=None):
         """Generate a mask according to the addmask and pic. save it to
         .npy. 1 stands for masked pixel the mask has same order as the
-        pic, which means if the pic is flipped, the mask is fliped (when
-        pic is loaded though loadimage, it is flipped)
+        pic, which means if the pic is flipped, the mask is flipped
+        (when pic is loaded though loadimage, it is flipped)
 
         :param filename: str, filename of mask file to be save
         :param pic: 2d array, image array

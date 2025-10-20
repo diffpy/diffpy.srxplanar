@@ -14,6 +14,6 @@
 ##############################################################################
 
 # package version
-from diffpy.srxplanar.version import __version__
+from diffpy.srxplanar.version import __version__  # noqa: F401
 
 # End of file
