@@ -854,7 +854,7 @@ class TiffFile(object):
                     page.axes,
                     page.compression in TIFF_DECOMPESSORS,
                 )
-                if not shape in pages:
+                if shape not in pages:
                     shapes.append(shape)
                     pages[shape] = [page]
                 else:
@@ -954,8 +954,8 @@ class TiffFile(object):
                     ):
                         continue
                     for value in annot:
-                        for modul in value:
-                            for along in modul:
+                        for modulo in value:
+                            for along in modulo:
                                 if not along.tag[:-1].endswith("Along"):
                                     continue
                                 axis = along.tag[-1]
@@ -1215,14 +1215,14 @@ class TiffPage(object):
                 if tagcode > tag.code:
                     warnings.warn("tags are not ordered by code")
                 tagcode = tag.code
-                if not tag.name in tags:
+                if tag.name not in tags:
                     tags[tag.name] = tag
                 else:
                     # some files contain multiple IFD with same code
                     # e.g. MicroManager files contain two image_description
                     for ext in ("_1", "_2", "_3"):
                         name = tag.name + ext
-                        if not name in tags:
+                        if name not in tags:
                             tags[name] = tag
                             break
 
@@ -1292,7 +1292,7 @@ class TiffPage(object):
             else:
                 self.sample_format = TIFF_SAMPLE_FORMATS[value[0]]
 
-        if not "photometric" in tags:
+        if "photometric" not in tags:
             self.photometric = None
 
         if "image_length" in tags:
@@ -1327,7 +1327,7 @@ class TiffPage(object):
                     warnings.warn(str(e))
             self.imagej_tags = Record(adict)
 
-        if not "image_length" in self.tags or not "image_width" in self.tags:
+        if "image_length" not in self.tags or "image_width" not in self.tags:
             # some GEL file pages are missing image data
             self.image_length = 0
             self.image_width = 0
@@ -1453,7 +1453,7 @@ class TiffPage(object):
             self.shape = self._shape[2:4]
             self.axes = "YX"
 
-        if not self.compression and not "strip_byte_counts" in tags:
+        if not self.compression and "strip_byte_counts" not in tags:
             self.strip_byte_counts = numpy.prod(self.shape) * (
                 self.bits_per_sample // 8
             )
@@ -1900,7 +1900,7 @@ class TiffTag(object):
         else:
             value = struct.unpack(fmt, value[:size])
 
-        if not code in CUSTOM_TAGS:
+        if code not in CUSTOM_TAGS:
             if len(value) == 1:
                 value = value[0]
 
@@ -1938,7 +1938,7 @@ class TiffSequence(object):
     (2, 100, 256, 256)
     """
 
-    _axes_pattern = """
+    _axes_pattern = r"""
         # matches Olympus OIF and Leica TIFF series
         _?(?:(q|l|p|a|c|t|x|y|z|ch|tp)(\d{1,4}))
         _?(?:(q|l|p|a|c|t|x|y|z|ch|tp)(\d{1,4}))?
@@ -2115,12 +2115,12 @@ class Record(dict):
                 .rstrip()
             )
         for k, v in lists:
-            l = []
+            parse_list = []
             for i, w in enumerate(v):
-                l.append(
+                parse_list.append(
                     "* %s[%i]\n  %s" % (k, i, str(w).replace("\n", "\n  "))
                 )
-            s.append("\n".join(l))
+            s.append("\n".join(parse_list))
         return "\n".join(s)
 
 
@@ -2615,8 +2615,8 @@ def unpackints(data, dtype, itemsize, runlen=0):
     dtypestr = ">" + dtype.char  # dtype always big endian?
 
     unpack = struct.unpack
-    l = runlen * (len(data) * 8 // (runlen * itemsize + skipbits))
-    result = numpy.empty((l,), dtype)
+    length = runlen * (len(data) * 8 // (runlen * itemsize + skipbits))
+    result = numpy.empty((length,), dtype)
     bitcount = 0
     for i in range(len(result)):
         start = bitcount // 8
@@ -2760,7 +2760,7 @@ def natural_sorted(iterable):
     def sortkey(x):
         return [(int(c) if c.isdigit() else c) for c in re.split(numbers, x)]
 
-    numbers = re.compile("(\d+)")
+    numbers = re.compile(r"(\d+)")
     return sorted(iterable, key=sortkey)
 
 
@@ -3421,7 +3421,7 @@ CZ_LSM_SCAN_INFO_ATTRIBUTES = {
     0x90000001: "name",
     0x90000002: "power",
     0x90000003: "wavelength",
-    0x90000004: "aquire",
+    0x90000004: "acquire",
     0x90000005: "detchannel_name",
     0x90000006: "power_bc1",
     0x90000007: "power_bc2",
@@ -3850,7 +3850,9 @@ def main(argv=None):
 
     import optparse
 
-    search_doc = lambda r, d: re.search(r, __doc__).group(1) if __doc__ else d
+    def search_doc(r, d):
+        return re.search(r, __doc__).group(1) if __doc__ else d
+
     parser = optparse.OptionParser(
         usage="usage: %prog [options] path",
         description=search_doc("\n\n([^|]*?)\n\n", ""),

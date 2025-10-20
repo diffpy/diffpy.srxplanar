@@ -13,24 +13,14 @@
 #
 ##############################################################################
 
-import argparse
-import os
-import re
-import sys
-from configparser import ConfigParser
-from functools import partial
-
 import numpy as np
 
 from diffpy.confutils.config import ConfigBase
-from diffpy.confutils.tools import (
-    _configPropertyR,
-    _configPropertyRad,
-    _configPropertyRW,
-)
+from diffpy.confutils.tools import _configPropertyRad
 
 _description = """
-SrXplanar -- integrate 2D powder diffraction image to 1D with unceratinty propagation
+SrXplanar -- integrate 2D powder diffraction image to 1D
+with unceratinty propagation
 """
 # Text to display after the argument help
 _epilog = """
@@ -56,7 +46,10 @@ _optdatalist = [
             "config": "n",
             "header": "n",
             "f": "filename",
-            "h": "filename or list of filenames or filename pattern or list of filename pattern",
+            "h": (
+                "filename or list of filenames or filename pattern"
+                " or list of filename pattern"
+            ),
             "n": "*",
             "d": [],
         },
@@ -85,7 +78,7 @@ _optdatalist = [
             "d": False,
         },
     ],
-    # Expeiment gropu
+    # Experiment group
     [
         "opendirectory",
         {
@@ -113,7 +106,10 @@ _optdatalist = [
         {
             "sec": "Experiment",
             "s": "mask",
-            "h": "the mask file (support numpy .npy array, and tiff image, >0 stands for masked pixel)",
+            "h": (
+                "the mask file (support numpy .npy array, and tiff image,"
+                " >0 stands for masked pixel)"
+            ),
             "d": "",
             "tt": "file",
         },
@@ -124,7 +120,10 @@ _optdatalist = [
             "sec": "Control",
             "config": "n",
             "header": "n",
-            "h": "create a mask file according to current image file and value of addmask",
+            "h": (
+                "create a mask file according to"
+                " current image file and value of addmask"
+            ),
             "d": "",
         },
     ],
@@ -237,7 +236,7 @@ _optdatalist = [
         "fliphorizontal",
         {
             "sec": "Beamline",
-            "h": "filp the image horizontally",
+            "h": "flip the image horizontally",
             "n": "?",
             "co": True,
             "d": False,
@@ -247,7 +246,7 @@ _optdatalist = [
         "flipvertical",
         {
             "sec": "Beamline",
-            "h": "filp the image vertically",
+            "h": "flip the image vertically",
             "n": "?",
             "co": True,
             "d": True,
@@ -356,7 +355,11 @@ _optdatalist = [
         "avgmask",
         {
             "sec": "Others",
-            "h": "create a dynamic averaging mask that mask pixel with too high or too low intensity compare to the pixels which have similar twotheta value",
+            "h": (
+                "create a dynamic averaging mask that mask pixel with"
+                " too high or too low intensity compare to the pixels"
+                " which have similar twotheta value"
+            ),
             "n": "?",
             "co": True,
             "d": True,
@@ -385,7 +388,10 @@ _optdatalist = [
         "cropedges",
         {
             "sec": "Others",
-            "h": "crop the image, maske pixels around the image edge (left, right, top, bottom), must larger than 0",
+            "h": (
+                "crop the image, maske pixels around the image edge"
+                " (left, right, top, bottom), must larger than 0"
+            ),
             "n": 4,
             "tt": "array",
             "t": "intlist",
@@ -399,9 +405,13 @@ _optdatalist = [
             "args": "n",
             "config": "n",
             "header": "n",
-            "h": "crop the edge pixels, first four means the number of pixels masked in each edge \
+            "h": (
+                "crop the edge pixels, first four means"
+                " the number of pixels masked in each edge \
 (left, right, top, bottom), this crop is after all prepare calculation, \
-so change this value does not require a config update, value must larger than 0",
+so change this value does not require a config update,"
+                " value must larger than 0"
+            ),
             "n": 4,
             "tt": "array",
             "t": "intlist",
@@ -414,7 +424,10 @@ so change this value does not require a config update, value must larger than 0"
             "sec": "Others",
             "config": "n",
             "header": "n",
-            "h": "set True to disable all calculation, will automaticly set True if createconfig or createmask",
+            "h": (
+                "set True to disable all calculation,"
+                " will automatically set True if createconfig or createmask"
+            ),
             "n": "?",
             "co": True,
             "d": False,
@@ -461,7 +474,11 @@ so change this value does not require a config update, value must larger than 0"
             "args": "n",
             "config": "n",
             "header": "n",
-            "h": "a threshold for masked pixels in average masking, pixels with (self_int > avg_int * avgmaskhigh) will be masked",
+            "h": (
+                "a threshold for masked pixels in average masking,"
+                " pixels with (self_int > avg_int * avgmaskhigh)"
+                " will be masked"
+            ),
             "d": 2.0,
         },
     ],
@@ -472,7 +489,10 @@ so change this value does not require a config update, value must larger than 0"
             "args": "n",
             "config": "n",
             "header": "n",
-            "h": "a threshold for masked pixels in average masking, pixels with (self_int < avg_int * avgmasklow) will be masked",
+            "h": (
+                "a threshold for masked pixels in average masking,"
+                " pixels with (self_int < avg_int * avgmasklow) will be masked"
+            ),
             "d": 0.5,
         },
     ],
@@ -480,7 +500,7 @@ so change this value does not require a config update, value must larger than 0"
 
 _defaultdata = {
     "configfile": ["srxplanar.cfg", "SrXplanar.cfg"],
-    "headertitle": "SrXplanar configration",
+    "headertitle": "SrXplanar configuration",
 }
 
 
@@ -508,7 +528,12 @@ class SrXplanarConfig(ConfigBase):
 
         for name in ["rotation", "tilt", "tthstep", "tthmax"]:
             setattr(self.__class__, name, _configPropertyRad(name + "d"))
-        # cls._configlist['Experiment'].extend(['rotation', 'tilt', 'tthstep', 'tthmax'])
+        # cls._configlist['Experiment'].extend([
+        #     'rotation',
+        #     'tilt',
+        #     'tthstep',
+        #     'tthmax',
+        # ])
         return
 
     def _preUpdateSelf(self, **kwargs):
@@ -543,9 +568,11 @@ class SrXplanarConfig(ConfigBase):
         :param kwargs: optional kwargs
         """
 
-        if (self.createconfig != "") and (self.createconfig != None):
+        if (self.createconfig != "") and (self.createconfig is not None):
             self.nocalculation = True
-        if (self.createconfigfull != "") and (self.createconfigfull != None):
+        if (self.createconfigfull != "") and (
+            self.createconfigfull is not None
+        ):
             self.nocalculation = True
         if self.createmask != "":
             self.nocalculation = True
