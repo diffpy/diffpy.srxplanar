@@ -23,12 +23,8 @@ easy_install
 
 import argparse
 import os
+from collections import OrderedDict
 from configparser import ConfigParser
-
-try:
-    from collections import OrderedDict
-except ImportError:
-    from ordereddict import OrderedDict
 
 from diffpy.confutils.tools import FakeConfigFile, StrConv, opt2Str, str2Opt
 
