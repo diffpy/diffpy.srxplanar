@@ -1,38 +1,23 @@
-import os
 from functools import partial
 
 import numpy as np
-import scipy as sp
 from matplotlib import rcParams
-from scipy.optimize import (
-    brent,
-    fmin_bfgs,
-    fmin_cg,
-    fmin_l_bfgs_b,
-    fmin_powell,
-    fmin_slsqp,
-    fmin_tnc,
-    golden,
-    leastsq,
-    minimize,
-    minimize_scalar,
-)
+from scipy.optimize import leastsq, minimize
 
 rcParams["backend"] = "Qt4Agg"
 try:
-    import PySide
+    import PySide  # noqa: F401
 
     rcParams["backend.qt4"] = "PySide"
     import matplotlib.pyplot as plt
 
     mplenabled = True
-except:
+except ImportError:
     try:
         import matplotlib.pyplot as plt
-        import PyQt4
 
         mplenabled = True
-    except:
+    except ImportError:
         mplenabled = False
 
 
@@ -233,13 +218,13 @@ def selfCalibrateX(
     qind = [None, None]
     qind[0] = (
         int(qrange[0] / qstep)
-        if qrange[0] != None
+        if qrange[0] is not None
         else srx.config.xdimension / 20
     )
     qind[0] = 0 if qind[0] < 0 else qind[0]
     qind[1] = (
         int(qrange[1] / qstep)
-        if qrange[1] != None
+        if qrange[1] is not None
         else srx.config.xdimension / 2
     )
     qind[1] = (
@@ -316,7 +301,6 @@ def selfCalibrateX(
     print(p)
     if mode == "x":
         srx.updateConfig(xbeamcenter=p[0], **bak)
-        prv = p[0]
     elif mode == "y":
         srx.updateConfig(ybeamcenter=p[0], **bak)
     elif mode == "tilt":
@@ -395,7 +379,7 @@ def selfCalibrate(
             elif cropedges == "x" or (cropedges == "auto" and mode == "x"):
                 ce = [xd / 100, xd / 100, int(yc - 50), int(yd - yc - 50)]
             elif cropedges == "box" or (
-                cropedges == "auto" and (not mode in ["x", "y"])
+                cropedges == "auto" and (mode not in ["x", "y"])
             ):
                 ce = [
                     int(xc - xd / 6),

@@ -14,7 +14,6 @@
 ##############################################################################
 
 import numpy as np
-import scipy.sparse as ssp
 
 try:
     import fabio
@@ -23,7 +22,7 @@ try:
         rv = fabio.openimage.openimage(im)
         return rv.data
 
-except:
+except ImportError:
     import tifffile
 
     print("Only tiff or .npy mask is support since fabio is not available")
@@ -31,7 +30,7 @@ except:
     def openImage(im):
         try:
             rv = tifffile.imread(im)
-        except:
+        except (ValueError, OSError):
             rv = 0
         return rv
 
@@ -74,12 +73,14 @@ class Mask(object):
         remain unchanged for different images.
 
         :param maskfile: string, file name of mask,
-            mask file supported: .npy, .tif file, ATTN: mask in .npy form should be already flipped,
-            and 1 (or larger) stands for masked pixels, 0(<0) stands for unmasked pixels
+            mask file supported: .npy, .tif file, ATTN: mask in .npy form
+            should be already flipped,
+            and 1 (or larger) stands for masked pixels,
+            0(<0) stands for unmasked pixels
 
         :return: 2d array of boolean, 1 stands for masked pixel
         """
-        maskfile = self.maskfile if maskfile == None else maskfile
+        maskfile = self.maskfile if maskfile is None else maskfile
 
         if os.path.exists(maskfile):
             if maskfile.endswith(".npy"):
@@ -117,13 +118,13 @@ class Mask(object):
 
         brightpixelmask = (
             self.brightpixelmask
-            if brightpixelmask == None
+            if brightpixelmask is None
             else brightpixelmask
         )
         darkpixelmask = (
-            self.darkpixelmask if darkpixelmask == None else darkpixelmask
+            self.darkpixelmask if darkpixelmask is None else darkpixelmask
         )
-        avgmask = self.avgmask if avgmask == None else avgmask
+        avgmask = self.avgmask if avgmask is None else avgmask
 
         if darkpixelmask or brightpixelmask or avgmask:
             rv = np.zeros((self.ydimension, self.xdimension))
@@ -145,7 +146,7 @@ class Mask(object):
             edge (left, right, top, bottom), must larger than 0, if
             None, use self.corpedges
         """
-        ce = self.cropedges if cropedges == None else cropedges
+        ce = self.cropedges if cropedges is None else cropedges
         mask = np.ones((self.ydimension, self.xdimension), dtype=bool)
         mask[ce[2] : -ce[3], ce[0] : -ce[1]] = 0
         return mask
@@ -167,10 +168,10 @@ class Mask(object):
             None, use self.config.corpedges :return 2d bool array, True
             for masked pixel, edgemake included, dymask not included
         """
-        if dymask == None:
+        if dymask is None:
             dymask = self.staticmask
-        high = self.config.avgmaskhigh if high == None else high
-        low = self.config.avgmasklow if low == None else low
+        high = self.config.avgmaskhigh if high is None else high
+        low = self.config.avgmasklow if low is None else low
 
         self.calculate.genIntegrationInds(dymask)
         chi = self.calculate.intensity(image)
@@ -180,7 +181,7 @@ class Mask(object):
         index[index >= len(chi[1]) - 1] = len(chi[1]) - 1
         avgimage = chi[1][index.ravel()].reshape(index.shape)
         mask = np.ones((self.ydimension, self.xdimension), dtype=bool)
-        ce = self.cropedges if cropedges == None else cropedges
+        ce = self.cropedges if cropedges is None else cropedges
         mask[ce[2] : -ce[3], ce[0] : -ce[1]] = np.logical_or(
             image[ce[2] : -ce[3], ce[0] : -ce[1]] < avgimage * low,
             image[ce[2] : -ce[3], ce[0] : -ce[1]] > avgimage * high,
@@ -195,7 +196,7 @@ class Mask(object):
         :param r: float, a threshold for masked pixels
         :return: 2d array of boolean, 1 stands for masked pixel
         """
-        r = self.config.darkpixelr if r == None else r  # 0.1
+        r = self.config.darkpixelr if r is None else r  # 0.1
 
         avgpic = np.average(pic)
         ks = np.ones((5, 5))
@@ -222,8 +223,8 @@ class Mask(object):
         :param r: float, a threshold for masked pixels
         :return: 2d array of boolean, 1 stands for masked pixel
         """
-        size = self.config.brightpixelsize if size == None else size  # 5
-        r = self.config.brightpixelr if r == None else r  # 1.2
+        size = self.config.brightpixelsize if size is None else size  # 5
+        r = self.config.brightpixelr if r is None else r  # 1.2
 
         rank = snf.rank_filter(pic, -size, size)
         ind = snm.binary_dilation(pic > rank * r, np.ones((3, 3)))
@@ -266,14 +267,14 @@ class Mask(object):
         """
         if not hasattr(self, "mask"):
             self.normalMask(addmask)
-        if (not hasattr(self, "dynamicmask")) and (pic != None):
+        if (not hasattr(self, "dynamicmask")) and (pic is not None):
             self.dynamicMask(pic, addmask=addmask)
         tmask = self.mask
         if hasattr(self, "dynamicmask"):
-            if self.dynamicmask != None:
+            if self.dynamicmask is not None:
                 tmask = (
                     np.logical_or(self.mask, self.dynamicmask)
-                    if pic != None
+                    if pic is not None
                     else self.mask
                 )
         np.save(filename, tmask)

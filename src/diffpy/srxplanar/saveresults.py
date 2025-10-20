@@ -16,7 +16,6 @@
 import os
 
 import numpy as np
-import scipy.io
 
 from diffpy.srxplanar.srxplanarconfig import _configPropertyR
 
@@ -48,7 +47,7 @@ class SaveResults(object):
         :return: string, full normalized path of file without extension
         """
         filebase = os.path.splitext(os.path.split(filename)[1])[0]
-        if self.filenameplus != "" and self.filenameplus != None:
+        if self.filenameplus != "" and self.filenameplus is not None:
             filenamep = "_".join(
                 [filebase, self.filenameplus, self.integrationspace]
             )
@@ -99,7 +98,7 @@ class SaveResults(object):
         f.write("#### start data\n")
         if xrd.shape[0] == 3:
             s = writeGSASStr(
-                os.path.splitext(path)[0],
+                os.path.splitext(filepath)[0],
                 self.gsasoutput,
                 xrd[0],
                 xrd[1],
@@ -107,7 +106,7 @@ class SaveResults(object):
             )
         elif xrd.shape[0] == 2:
             s = writeGSASStr(
-                os.path.splitext(path)[0], self.gsasoutput, xrd[0], xrd[1]
+                os.path.splitext(filepath)[0], self.gsasoutput, xrd[0], xrd[1]
             )
         f.write(s)
         f.close()
@@ -124,7 +123,7 @@ def writeGSASStr(name, mode, tth, iobs, esd=None):
     :return: string, a string to be saved to file
     """
     maxintensity = 999999
-    logscale = numpy.floor(numpy.log10(maxintensity / numpy.max(iobs)))
+    logscale = np.floor(np.log10(maxintensity / np.max(iobs)))
     logscale = min(logscale, 0)
     scale = 10 ** int(logscale)
     lines = []
@@ -139,10 +138,10 @@ def writeGSASStr(name, mode, tth, iobs, esd=None):
     # two-theta0 and dtwo-theta in centidegrees
     tth0_cdg = tth[0] * 100
     dtth_cdg = (tth[-1] - tth[0]) / (len(tth) - 1) * 100
-    if esd == None:
+    if esd is None:
         mode = "std"
     if mode == "std":
-        nrec = int(numpy.ceil(nchan / 10.0))
+        nrec = int(np.ceil(nchan / 10.0))
         lbank = "BANK %5i %8i %8i CONST %9.5f %9.5f %9.5f %9.5f STD" % (
             ibank,
             nchan,
@@ -157,7 +156,7 @@ def writeGSASStr(name, mode, tth, iobs, esd=None):
         for i in range(0, len(lrecs), 10):
             lines.append("".join(lrecs[i : i + 10]))
     if mode == "esd":
-        nrec = int(numpy.ceil(nchan / 5.0))
+        nrec = int(np.ceil(nchan / 5.0))
         lbank = "BANK %5i %8i %8i CONST %9.5f %9.5f %9.5f %9.5f ESD" % (
             ibank,
             nchan,
