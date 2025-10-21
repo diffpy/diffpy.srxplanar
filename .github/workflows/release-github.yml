@@ -1,0 +1,163 @@
+name: Release on GitHub
+
+on:
+  workflow_call:
+    secrets:
+      PAT_TOKEN:
+        description: "GitHub Personal Access Token"
+        required: true
+
+env:
+  TAG: ${{ github.ref_name }}
+
+defaults:
+  run:
+    shell: bash {0}
+
+jobs:
+  prepare-release:
+    if: ${{ ! contains(github.ref, 'rc') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          ref: main
+
+      - name: Update CHANGELOG
+        run: |
+          wget https://raw.githubusercontent.com/scikit-package/release-scripts/v0/.github/workflows/update-changelog.py
+          python update-changelog.py "$TAG"
+          rm update-changelog.py
+
+      - name: Commit updated CHANGELOG.rst
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if ! git diff --cached --quiet; then
+            git commit -m "update changelog for $TAG"
+            git push origin main
+          else
+            echo "No CHANGELOG.rst changes"
+          fi
+
+      - name: New tag
+        run: |
+          git fetch --tags
+          git tag -d "$TAG" 2>/dev/null || true
+          git push origin ":$TAG" 2>/dev/null || true
+          git tag "$TAG"
+          git push origin "$TAG"
+
+      - name: Get CHANGELOG.txt
+        run: |
+          wget https://raw.githubusercontent.com/scikit-package/release-scripts/v0/.github/workflows/get-latest-changelog.py
+          python get-latest-changelog.py "$TAG"
+          rm get-latest-changelog.py
+
+      - name: Upload changelog.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: changelog
+          path: CHANGELOG.txt
+
+  release:
+    needs: [prepare-release]
+    if: always()
+    runs-on: ubuntu-latest
+    env:
+      REPO_FULL: ${{ github.repository }}
+      PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+    steps:
+      - name: Check prepare release
+        run: |
+          if [[ ${{ needs.prepare-release.result }} != 'success' && "$TAG" != *rc* ]]; then
+            echo "::error::Skipping release job because prepare-release failed"
+            exit 78
+          fi
+          echo "Continuing with release job"
+
+      - name: Download built wheels
+        uses: actions/download-artifact@v4
+        with:
+          path: dist/
+
+      - name: Download changelog
+        if: ${{ needs.prepare-release.result == 'success' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: changelog
+          path: .
+
+      - name: Download instructions
+        uses: actions/download-artifact@v4
+        with:
+          name: instructions
+          path: .
+
+      - name: Zip wheels and instructions into dist/srxplanar-$TAG-wheels.zip
+        run: |
+          mkdir -p dist
+          find dist -type f -name '*.whl' | zip -j dist/srxplanar-"$TAG"-wheels.zip -@
+          zip -j dist/srxplanar-"$TAG"-wheels.zip INSTRUCTIONS.txt
+
+      - name: Prepare release metadata
+        id: meta
+        run: |
+          if [[ "$TAG" == *rc* ]]; then
+            PRERELEASE=true
+            TITLE="Pre-release $TAG"
+            BODY_RAW="Changelog: https://github.com/$REPO_FULL/commits/$TAG"
+          else
+            PRERELEASE=false
+            TITLE="Release $TAG"
+            BODY_RAW=$(<CHANGELOG.txt)
+          fi
+
+          jq -n \
+            --arg tag "$TAG" \
+            --arg name "$TITLE" \
+            --arg body "$BODY_RAW" \
+            --argjson prerelease "$PRERELEASE" \
+            '{ tag_name: $tag,
+              name: $name,
+              body: $body,
+              prerelease: $prerelease
+            }' > payload.json
+
+            echo "Release metadata:"
+            cat payload.json
+
+      - name: Create GitHub Release
+        id: create_release
+        run: |
+          set -euo pipefail
+
+          HTTP_STATUS=$(
+            curl --silent --output resp.json --write-out "%{http_code}" \
+              -X POST "https://api.github.com/repos/$REPO_FULL/releases" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer $PAT_TOKEN" \
+              --data @payload.json
+          )
+          if [[ "$HTTP_STATUS" -ne 201 ]]; then
+            echo "::error::Failed to create release (status $HTTP_STATUS)"
+            exit 1
+          fi
+
+          UPLOAD_URL=$(jq -r .upload_url resp.json | sed 's/{.*}//')
+          echo "upload_url=$UPLOAD_URL" >> $GITHUB_OUTPUT
+
+      - name: Upload srxplanar-$TAG-wheels.zip
+        if: steps.create_release.outputs.upload_url != ''
+        run: |
+          FILE=dist/srxplanar-$TAG-wheels.zip
+          echo "Uploading asset: $FILE"
+          curl --silent --fail --data-binary @"$FILE" \
+            -H "Content-Type: application/zip" \
+            -H "Authorization: Bearer $PAT_TOKEN" \
+            "${{ steps.create_release.outputs.upload_url }}?name=$(basename "$FILE")"
