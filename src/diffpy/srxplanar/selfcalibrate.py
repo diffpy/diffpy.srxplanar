@@ -354,7 +354,7 @@ def selfCalibrate(
         list of str: eg. ['x', 'y', 'xy'] -> refine x, then y, then xy
     :param cropedges: list of int or str
         if list of int, it will be passed to srx instance and used as cropedges
-        if 'auto', the cropedges of srx instance will be set automaticly ,
+        if 'auto', the cropedges of srx instance will be set automatically ,
         if 'x'('y'), then a slice along x(y) axis will be used
         if 'box', then a box around the center will be used
         if 'all', then use all pixels

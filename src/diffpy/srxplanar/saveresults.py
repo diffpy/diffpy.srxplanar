@@ -62,7 +62,7 @@ class SaveResults(object):
         :param rv: dict, result include integrated diffration intensity
             the rv['chi'] should be a 2d array with shape (2,len of
             intensity) or (3, len of intensity) file name is generated
-            according to orginal file name and savedirectory
+            according to original file name and savedirectory
         """
         rv = self.saveChi(rv["chi"], rv["filename"])
         if self.gsasoutput:
