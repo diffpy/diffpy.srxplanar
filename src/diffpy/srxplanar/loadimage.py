@@ -19,7 +19,7 @@ import time
 
 import numpy as np
 
-from diffpy.srxplanar.srxplanarconfig import _configPropertyR
+from diffpy.confutils.tools import _configPropertyR
 
 try:
     import fabio

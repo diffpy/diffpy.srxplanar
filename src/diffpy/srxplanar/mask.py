@@ -40,7 +40,7 @@ import os
 import scipy.ndimage.filters as snf
 import scipy.ndimage.morphology as snm
 
-from diffpy.srxplanar.srxplanarconfig import _configPropertyR
+from diffpy.confutils.tools import _configPropertyR
 
 
 class Mask(object):

@@ -371,7 +371,7 @@ class ConfigBase(object):
         :return: string, type of the option
         """
         optdata = cls._optdata[optname]
-        if optdata.has_key("t"):
+        if "t" in optdata:
             opttype = optdata["t"]
         else:
             value = optdata["d"]
@@ -445,7 +445,7 @@ class ConfigBase(object):
         cls._addOptSelfC(optname, optdata)
 
         # add to cls.config
-        secname = optdata["sec"] if optdata.has_key("sec") else "Others"
+        secname = optdata["sec"] if "sec" in optdata else "Others"
         cls._configlist[secname].append(optname)
         if optdata.get("config", "a") != "n":
             strvalue = (
@@ -459,14 +459,14 @@ class ConfigBase(object):
             # transform optdata to a dict that can pass to add_argument method
             pargs = dict()
             for key in optdata.keys():
-                if cls._optdatanamedict.has_key(key):
+                if key in cls._optdatanamedict:
                     pargs[cls._optdatanamedict[key]] = optdata[key]
             pargs["default"] = argparse.SUPPRESS
             pargs["type"] = StrConv(opttype)
             # add args
-            if optdata.has_key("f"):
+            if "f" in optdata:
                 cls.args.add_argument(optname, **pargs)
-            elif optdata.has_key("s"):
+            elif "s" in optdata:
                 cls.args.add_argument(
                     "--" + optname, "-" + optdata["s"], **pargs
                 )
@@ -773,7 +773,7 @@ class ConfigBase(object):
         """
         cls._preInitConfigClass()
 
-        cls.config = ConfigParser.ConfigParser(dict_type=OrderedDict)
+        cls.config = ConfigParser(dict_type=OrderedDict)
         cls.args = argparse.ArgumentParser(
             description=cls._description,
             epilog=cls._epilog,
