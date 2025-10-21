@@ -6,15 +6,15 @@ build-backend = "setuptools.build_meta"
 name = "diffpy.srxplanar"
 dynamic=['version', 'dependencies']
 authors = [
-  { name="Simon J.L. Billinge group", email="simon.billinge@gmail.com" },
+  { name="Simon Billinge", email="sb2896@columbia.edu" },
 ]
 maintainers = [
-  { name="Simon J.L. Billinge group", email="simon.billinge@gmail.com" },
+  { name="Simon Billinge", email="sb2896@columbia.edu" },
 ]
 description = "Distance Printer, calculate the inter atomic distances. Part of xPDFsuite"
 keywords = ['diffpy', 'pdf', 'data interpretation']
 readme = "README.rst"
-requires-python = ">=3.11, <3.14"
+requires-python = ">=3.12, <3.15"
 classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
@@ -25,19 +25,16 @@ classifiers = [
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX',
         'Operating System :: Unix',
-        'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: 3.13',
+        'Programming Language :: Python :: 3.14',
         'Topic :: Scientific/Engineering :: Physics',
         'Topic :: Scientific/Engineering :: Chemistry',
 ]
 
-[project.scripts]
-srxplanar = 'diffpy.srxplanar.srxplanar:main'
-
 [project.urls]
-Homepage = "https://github.com/diffpy/diffpy.distanceprinter/"
-Issues = "https://github.com/diffpy/diffpy.distanceprinter/issues/"
+Homepage = "https://github.com/diffpy/diffpy.srxplanar/"
+Issues = "https://github.com/diffpy/diffpy.srxplanar/issues/"
 
 [tool.setuptools-git-versioning]
 enabled = true
@@ -51,13 +48,16 @@ include = ["*"]  # package names should match these glob patterns (["*"] by defa
 exclude = []  # exclude packages matching these glob patterns (empty by default)
 namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
 
+[project.scripts]
+diffpy-srxplanar = "diffpy.srxplanar_app:main"
+
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements/pip.txt"]}
 
 [tool.codespell]
 exclude-file = ".codespell/ignore_lines.txt"
 ignore-words = ".codespell/ignore_words.txt"
-skip = "*.cif,*.dat,*agr"
+skip = "*.cif,*.dat"
 
 [tool.docformatter]
 recursive = true
