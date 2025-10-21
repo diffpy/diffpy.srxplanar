@@ -1,26 +1,26 @@
 #!/usr/bin/env python
 ##############################################################################
 #
-# diffpy.srxplanar  by DANSE Diffraction group
-#                   Simon J. L. Billinge
-#                   (c) 2010 Trustees of the Columbia University
-#                   in the City of New York.  All rights reserved.
+# (c) 2025 The Trustees of Columbia University in the City of New York.
+# All rights reserved.
 #
-# File coded by:    Xiaohao Yang
+# File coded by: Simon Billinge, Billinge Group members.
 #
-# See AUTHORS.txt for a list of people who contributed.
-# See LICENSE.txt for license information.
+# See GitHub contributions for a more detailed list of contributors.
+# https://github.com/diffpy/diffpy.srxplanar/graphs/contributors
+#
+# See LICENSE.rst for license information.
 #
 ##############################################################################
+"""Distance Printer, calculate the inter atomic distances.
 
-# some convenience imports
-from diffpy.srxplanar.srxplanar import SrXplanar  # noqa: F401
-from diffpy.srxplanar.srxplanarconfig import SrXplanarConfig  # noqa: F401
+Part of xPDFsuite
+"""
 
 # package version
-from diffpy.srxplanar.version import __version__  # noqa: F401
+from diffpy.srxplanar.version import __version__
 
-# unit tests
-
+# silence the pyflakes syntax checker
+assert __version__ or True
 
 # End of file
