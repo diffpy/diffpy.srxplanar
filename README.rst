@@ -10,19 +10,7 @@
 
 |PythonVersion| |PR|
 
-|Black| |Tracking|
-
-.. |Black| image:: https://img.shields.io/badge/code_style-black-black
-        :target: https://github.com/psf/black
-
-.. |Codecov| image:: https://codecov.io/gh/diffpy/diffpy.srxplanar/branch/main/graph/badge.svg
-        :target: https://codecov.io/gh/diffpy/diffpy.srxplanar
-
-.. |PR| image:: https://img.shields.io/badge/PR-Welcome-29ab47ff
-        :target: https://github.com/diffpy/diffpy.srxplanar/pulls
-
-.. |PyPI| image:: https://img.shields.io/pypi/v/diffpy.srxplanar
-        :target: https://pypi.org/project/diffpy.srxplanar/
+|Tracking|
 
 .. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/diffpy.srxplanar
         :target: https://pypi.org/project/diffpy.srxplanar/
@@ -34,8 +22,7 @@ Distance Printer, calculate the inter atomic distances. Part of xPDFsuite
 
 diffpy.srxplanar package provides 2D diffraction image integration using
 non splitting pixel algorithm. And it can estimate and propagate statistic
-uncertainty of raw counts and integrated intensity. If you are using this
-software.
+uncertainty of raw counts and integrated intensity.
 
 To learn more about diffpy.srxplanar library, see the examples directory
 included in this distribution or the API documentation at
@@ -59,6 +46,11 @@ Installation
 ------------
 
 The preferred method is to be installed with `xpdfsuite` package or the wheel file.
+
+To install the package with the wheel file, you can first download the wheel file, then type
+
+`pip install /path/to/diffpy.srxplanar-X.Y.Z-py3-none-any.whl`.
+
 
 This package also provides command-line utilities. To check the software has been installed correctly, type ::
 
