@@ -1,0 +1,230 @@
+name: Build Wheels and Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "*"
+
+env:
+  PYTHON_VERSIONS: '["3.11","3.12","3.13"]'
+
+permissions:
+  contents: write
+  actions: read
+  packages: write
+
+concurrency:
+  group: build-wheels-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash {0}
+
+jobs:
+  get-python-versions:
+    runs-on: ubuntu-latest
+    outputs:
+      py_ver: ${{ steps.set.outputs.py_ver }}
+      py_last: ${{ steps.set.outputs.py_last }}
+    steps:
+      - id: set
+        run: |
+          echo py_ver=$PYTHON_VERSIONS >> $GITHUB_OUTPUT
+          echo "py_last=${{ fromJson(env.PYTHON_VERSIONS)[0] }}" >> $GITHUB_OUTPUT
+
+  check-tag-on-main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository with full history
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          fetch-depth: 0
+
+      - name: Verify tag
+        run: |
+          git fetch origin main
+          TAG_COMMIT=$(git rev-parse ${{ github.ref_name }})
+          if git merge-base --is-ancestor "$TAG_COMMIT" origin/main; then
+            echo "Tag ${{ github.ref_name }} ($TAG_COMMIT) is contained in main"
+          else
+            echo "::error::Tag ${{ github.ref_name }} ($TAG_COMMIT) is not found in main. Please release from the main branch."
+            exit 1
+          fi
+
+  check-tag-privilege:
+    # No third party actions used
+    uses: scikit-package/release-scripts/.github/workflows/_check-tag-privilege.yml@v0
+    with:
+      maintainer_github_username: sbillinge
+
+  build-sdist:
+    needs: [check-tag-privilege, get-python-versions, check-tag-on-main]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        # GitHub officially-maintained actions
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        # GitHub officially-maintained actions
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ needs.get-python-versions.outputs.py_last }}
+
+      - name: Build docs and remove fonts that blow up the wheel size
+        run: |
+          python -m pip install Sphinx sphinx-rtd-theme sphinx-copybutton m2r
+          cd docs
+          make html
+          cd build/html/_static/css/fonts
+          find . -type f ! -name '*.ttf' -delete
+          cd ../..
+          rm -rf fonts
+          cd ..
+          rm -rf _sources
+          cd ..
+          rm -rf doctrees
+          cd ../..
+
+      - name: Make sdist
+        run: |
+          python -m pip install --upgrade pip build cython setuptools setuptools-git-versioning
+          python -m build --sdist --no-isolation
+
+      - name: Strip source codes
+        run: |
+          set -euo pipefail
+          tar xf dist/diffpy_srxplanar-*.tar.gz
+          SRC_DIR=$(find . -maxdepth 1 -type d -name 'diffpy_srxplanar-*' | head -n1)
+          find "$SRC_DIR" -type f -name '*.c' -print0 \
+          | xargs -0 perl -i.bak -0777 -pe 's{/\*.*?\*/}{}gs'
+          find "$SRC_DIR" -type f -name '*.c.bak' -delete
+          tar czf dist/"${SRC_DIR#./}".tar.gz "$SRC_DIR"
+          rm -rf "$SRC_DIR"
+
+      - name: Upload sdist
+        # GitHub officially-maintained actions
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: dist/
+          retention-days: 1
+
+      - name: Upload INSTRUCTIONS.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: instructions
+          path: INSTRUCTIONS.txt
+
+  build-wheels:
+    needs: [build-sdist, get-python-versions]
+
+    name: Build wheels ${{ matrix.python }}-${{ matrix.buildplat }}
+    runs-on: ${{ matrix.buildplat }}
+    strategy:
+      fail-fast: false
+      matrix:
+        buildplat:
+          - ubuntu-latest
+          - macos-14
+          - windows-latest
+        python: ${{ fromJSON(needs.get-python-versions.outputs.py_ver) }}
+    steps:
+      - name: Download sdist
+        # GitHub officially-maintained actions
+        uses: actions/download-artifact@v4
+        with:
+          name: sdist
+          path: dist/
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Build wheels
+        run: |
+          # setuptools-git-versioning only look into .git and PKG-INFO in the top directory
+          which python; python --version
+          which pip;    pip --version
+          python -m pip install --upgrade pip build cython setuptools setuptools-git-versioning
+          tar xf dist/diffpy_srxplanar-*.tar.gz
+          cd diffpy_srxplanar-*
+          python -m pip wheel . --no-deps --no-build-isolation --wheel-dir ./../dist
+
+      - name: Upload wheels
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheels-${{ matrix.python }}-${{ matrix.buildplat }}
+          path: dist/*.whl
+
+  test-wheels:
+    needs: [build-wheels, get-python-versions]
+
+    name: Test wheels ${{ matrix.python }}-${{ matrix.buildplat }}
+    runs-on: ${{ matrix.buildplat }}
+    strategy:
+      fail-fast: false
+      matrix:
+        buildplat:
+          - ubuntu-latest
+          - macos-14
+          - windows-latest
+        python: ${{ fromJson(needs.get-python-versions.outputs.py_ver) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download wheels
+        uses: actions/download-artifact@v4
+        with:
+          name: wheels-${{ matrix.python }}-${{ matrix.buildplat }}
+          path: dist/
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install wheels
+        run: |
+          python -m pip install --upgrade pip pytest setuptools-git-versioning
+          python -m pip install dist/*.whl
+
+      - name: Assert no source files in installed package
+        run: |
+          # For debugging
+          # touch $(python -c "import sysconfig, os; print(os.path.join(sysconfig.get_paths()['purelib'], 'diffpy/srxplanar', 'fake.py'))")
+          python - << 'EOF'
+          import os, glob, sys, sysconfig
+          sp = sysconfig.get_paths()['purelib']
+          pkg = os.path.join(sp, 'diffpy', 'srxplanar')
+          patterns = [os.path.join(pkg, '*.py'),
+                      os.path.join(pkg, '*.c')]
+          bad = []
+          for p in patterns:
+              bad.extend(glob.glob(p))
+
+          if bad:
+              print("Found leftover source files in installed package:")
+              for f in bad:
+                  print("  -", f)
+              sys.exit(1)
+
+          print("No .py or .c files present in diffpy/srxplanar/")
+          EOF
+
+      - name: Run tests
+        run: python -m pytest
+
+  release:
+    needs: [test-wheels]
+    uses: ./.github/workflows/release-github.yml
+    secrets:
+      PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
