@@ -1,5 +1,36 @@
-diffpy.srxplanar
-========================================================================
+|Icon| |title|_
+===============
+
+.. |title| replace:: diffpy.srxplanar
+.. _title: https://diffpy.github.io/diffpy.srxplanar
+
+.. |Icon| image:: https://avatars.githubusercontent.com/diffpy
+        :target: https://diffpy.github.io/diffpy.srxplanar
+        :height: 100px
+
+|PythonVersion| |PR|
+
+|Black| |Tracking|
+
+.. |Black| image:: https://img.shields.io/badge/code_style-black-black
+        :target: https://github.com/psf/black
+
+.. |Codecov| image:: https://codecov.io/gh/diffpy/diffpy.srxplanar/branch/main/graph/badge.svg
+        :target: https://codecov.io/gh/diffpy/diffpy.srxplanar
+
+.. |PR| image:: https://img.shields.io/badge/PR-Welcome-29ab47ff
+        :target: https://github.com/diffpy/diffpy.srxplanar/pulls
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/diffpy.srxplanar
+        :target: https://pypi.org/project/diffpy.srxplanar/
+
+.. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/diffpy.srxplanar
+        :target: https://pypi.org/project/diffpy.srxplanar/
+
+.. |Tracking| image:: https://img.shields.io/badge/issue_tracking-github-blue
+        :target: https://github.com/diffpy/diffpy.srxplanar/issues
+
+Distance Printer, calculate the inter atomic distances. Part of xPDFsuite
 
 diffpy.srxplanar package provides 2D diffraction image integration using
 non splitting pixel algorithm. And it can estimate and propagate statistic
@@ -17,79 +48,72 @@ included in this distribution or the API documentation at
 
 http://diffpy.github.io/diffpy.srxplanar/
 
-REQUIREMENTS
-------------------------------------------------------------------------
+For more information about the diffpy.srxplanar library, please consult our `online documentation <https://diffpy.github.io/diffpy.srxplanar>`_.
 
-The diffpy.srxplanar requires Python 2.6 or 2.7 and the following software:
+Citation
+--------
 
-* `setuptools`  >=0.61(https://pypi.python.org/pypi/setuptools)
-* `numpy`       >=1.60(http://www.numpy.org/)
-* `scipy`       >=1.10(www.scipy.org/)
-* `FabIO`       >=0.80(http://sourceforge.net/projects/fable/files/fabio/)
+If you use diffpy.srxplanar in a scientific publication, we would like you to cite this package as
 
-If your python version < 2.7 (these two packages are included in 2.7 but not in 2.6)
+        diffpy.srxplanar Package, https://github.com/diffpy/diffpy.srxplanar
 
-* `ordereddict` https://pypi.python.org/pypi/ordereddict
-* `argparse`    https://pypi.python.org/pypi/argparse
+Installation
+------------
 
-On Ubuntu Linux the part of required software can be easily installed using
-the system package manager::
+The preferred method is to be installed with `xpdfsuite` package or the wheel file.
 
-    sudo aptitude install \
-        python-setuptools python-numpy python-scipy
+This package also provides command-line utilities. To check the software has been installed correctly, type ::
 
-For Mac OS X machine with the MacPorts package manager one could do::
+        diffpy.srxplanar --version
 
-    sudo port install \
-        python27 py27-setuptools py27-numpy py27-scipy
+You can also type the following command to verify the installation. ::
 
-When installing with MacPorts, make sure the MacPorts bin directory is the
-first in the system PATH and that python27 is selected as the default
-Python version in MacPorts::
-
-    sudo port select --set python python27
-
-For other Linux distributions use their respective package manager; note
-the packages may have slightly different names. diffpy.srxplanar should work
-on other Unix-like operating systems as well.  Please, search the
-web for instructions how to install external dependencies on your particular
-system.
-
-For other packages, please go to the webpage list above to download and install.
+        python -c "import diffpy.srxplanar; print(diffpy.srxplanar.__version__)"
 
 
-INSTALLATION
-------------------------------------------------------------------------
+To view the basic usage and available commands, type ::
 
-To install the diffpy.srxplanar package::
+        diffpy.srxplanar -h
 
-    python setup.py install
+Getting Started
+---------------
 
-By default the files are installed in the system directories, which are
-usually only writeable by the root.  See the usage info
-"./setup.py install --help" for options to install as a normal user under
-different location.  Note that installation to non-standard directories may
-require adjustments to the PATH and PYTHONPATH environment variables.
+You may consult our `online documentation <https://diffpy.github.io/diffpy.srxplanar>`_ for tutorials and API references.
 
-DEVELOPMENT
-------------------------------------------------------------------------
+Support and Contribute
+----------------------
 
-diffpy.srxplanar is an open-source software developed at the Columbia University
-The diffpy.srxplanar sources are hosted at
+If you see a bug or want to request a feature, please `report it as an issue <https://github.com/diffpy/diffpy.srxplanar/issues>`_ and/or `submit a fix as a PR <https://github.com/diffpy/diffpy.srxplanar/pulls>`_.
 
-https://github.com/diffpy/diffpy.srxplanar
+Feel free to fork the project. To install diffpy.srxplanar
+in a development mode, with its sources being directly used by Python
+rather than copied to a package directory, use the following in the root
+directory ::
 
-Feel free to fork the project and contribute.  To install diffpy.srxplanar
-in a development mode, where the sources are directly used by Python
-rather than copied to a system directory, use::
+        pip install -e .
 
-    python setup.py develop --user
+To ensure code quality and to prevent accidental commits into the default branch, please set up the use of our pre-commit
+hooks.
 
-CONTACTS
-------------------------------------------------------------------------
+1. Install pre-commit in your working environment by running ``conda install pre-commit``.
 
-For more information on diffpy.srxplanar please visit the project web-page:
+2. Initialize pre-commit (one time only) ``pre-commit install``.
 
-http://www.diffpy.org/
+Thereafter your code will be linted by black and isort and checked against flake8 before you can commit.
+If it fails by black or isort, just rerun and it should pass (black and isort will modify the files so should
+pass after they are modified). If the flake8 test fails please see the error messages and fix them manually before
+trying to commit again.
 
-or email Prof. Simon Billinge at sb2896@columbia.edu
+Improvements and fixes are always appreciated.
+
+Before contributing, please read our `Code of Conduct <https://github.com/diffpy/diffpy.srxplanar/blob/main/CODE-OF-CONDUCT.rst>`_.
+
+Contact
+-------
+
+For more information on diffpy.srxplanar please visit the project `web-page <https://diffpy.github.io/>`_ or email Simon Billinge at sb2896@columbia.edu.
+
+Acknowledgements
+----------------
+
+``diffpy.srxplanar`` is built and maintained with `scikit-package <https://scikit-package.github.io/scikit-package/>`_.
