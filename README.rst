@@ -35,13 +35,7 @@ Distance Printer, calculate the inter atomic distances. Part of xPDFsuite
 diffpy.srxplanar package provides 2D diffraction image integration using
 non splitting pixel algorithm. And it can estimate and propagate statistic
 uncertainty of raw counts and integrated intensity. If you are using this
-software. If you use this program to do productive scientific research that
-leads to publication, we kindly ask that you acknowledge use of the program
-by citing the following paper in your publication:
-
-    Xiaohao Yang, Pavol Juhas, Simon J. L. Billinge, On the estimation of
-    statistical uncertainties on powder diffraction and small angle
-    scattering data from 2-D x-ray detectors, arXiv:1309.3614
+software.
 
 To learn more about diffpy.srxplanar library, see the examples directory
 included in this distribution or the API documentation at
@@ -53,9 +47,13 @@ For more information about the diffpy.srxplanar library, please consult our `onl
 Citation
 --------
 
-If you use diffpy.srxplanar in a scientific publication, we would like you to cite this package as
+If you use this program to do productive scientific research that
+leads to publication, we kindly ask that you acknowledge use of the program
+by citing the following paper in your publication:
 
-        diffpy.srxplanar Package, https://github.com/diffpy/diffpy.srxplanar
+    Xiaohao Yang, Pavol Juhas, Simon J. L. Billinge, On the estimation of
+    statistical uncertainties on powder diffraction and small angle
+    scattering data from 2-D x-ray detectors, arXiv:1309.3614
 
 Installation
 ------------
