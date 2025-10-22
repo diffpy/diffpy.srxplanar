@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path("../..").resolve()))
 sys.path.insert(0, str(Path("../../src").resolve()))
 
 # abbreviations
-ab_authors = "Simon Billinge, Billinge Group members"
+ab_authors = "Xiaohao Yang and Billinge Group members"
 
 # -- General configuration ------------------------------------------------
 
