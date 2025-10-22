@@ -1,7 +1,7 @@
 confutils Package
 =================
 
-:mod:`confutils` Package
+:mod:`diffpy.confutils` Package
 ------------------------
 
 .. automodule:: diffpy.confutils
@@ -9,7 +9,7 @@ confutils Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`config` Module
+:mod:`diffpy.confutils.config` Module
 --------------------
 
 .. automodule:: diffpy.confutils.config
@@ -17,7 +17,7 @@ confutils Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`tools` Module
+:mod:`diffpy.confutils.tools` Module
 -------------------
 
 .. automodule:: diffpy.confutils.tools
@@ -25,7 +25,7 @@ confutils Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`version` Module
+:mod:`diffpy.confutils.version` Module
 ---------------------
 
 .. automodule:: diffpy.confutils.version

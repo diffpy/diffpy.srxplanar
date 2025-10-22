@@ -10,17 +10,11 @@
     :undoc-members:
     :show-inheritance:
 
-Subpackages
------------
-
-.. toctree::
-   diffpy.srxplanar.example_package
-
 Submodules
-----------
+---------------------
 
 |module_1|
---------
+----------
 
 .. |module_1| replace:: diffpy.srxplanar.calculate module
 
@@ -30,7 +24,7 @@ Submodules
     :show-inheritance:
 
 |module_2|
---------
+----------
 
 .. |module_2| replace:: diffpy.srxplanar.loadimage module
 
@@ -40,7 +34,7 @@ Submodules
     :show-inheritance:
 
 |module_3|
---------
+----------
 
 .. |module_3| replace:: diffpy.srxplanar.mask module
 
@@ -50,7 +44,7 @@ Submodules
     :show-inheritance:
 
 |module_4|
---------
+----------
 
 .. |module_4| replace:: diffpy.srxplanar.saveresults module
 
@@ -60,7 +54,7 @@ Submodules
     :show-inheritance:
 
 |module_5|
---------
+----------
 
 .. |module_5| replace:: diffpy.srxplanar.srxplanar module
 
@@ -70,7 +64,7 @@ Submodules
     :show-inheritance:
 
 |module_6|
---------
+----------
 
 .. |module_6| replace:: diffpy.srxplanar.srxplanarconfig module
 
@@ -80,7 +74,7 @@ Submodules
     :show-inheritance:
 
 |module_7|
---------
+----------
 
 .. |module_7| replace:: diffpy.srxplanar.version module
 

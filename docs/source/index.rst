@@ -34,7 +34,8 @@ Table of contents
    :maxdepth: 2
 
    Package API <api/diffpy.srxplanar>
-   release
+   Modules <api/modules>
+   Release notes <release>
    license
 
 =======
