@@ -10,7 +10,13 @@
 
 |PythonVersion| |PR|
 
-|Tracking|
+|Black| |Tracking|
+
+.. |Black| image:: https://img.shields.io/badge/code_style-black-black
+        :target: https://github.com/psf/black
+
+.. |PR| image:: https://img.shields.io/badge/PR-Welcome-29ab47ff
+        :target: https://github.com/diffpy/diffpy.srxplanar/pulls
 
 .. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/diffpy.srxplanar
         :target: https://pypi.org/project/diffpy.srxplanar/
@@ -18,7 +24,7 @@
 .. |Tracking| image:: https://img.shields.io/badge/issue_tracking-github-blue
         :target: https://github.com/diffpy/diffpy.srxplanar/issues
 
-Distance Printer, calculate the inter atomic distances. Part of xPDFsuite
+This is part of xPDFsuite package.
 
 diffpy.srxplanar package provides 2D diffraction image integration using
 non splitting pixel algorithm. And it can estimate and propagate statistic
