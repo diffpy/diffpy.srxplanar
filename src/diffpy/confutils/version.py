@@ -14,18 +14,15 @@
 ##############################################################################
 """Definition of __version__, __date__, __gitsha__."""
 
-from configparser import SafeConfigParser
+#  We do not use the other three variables, but can be added back if needed.
+#  __all__ = ["__date__", "__git_commit__", "__timestamp__", "__version__"]
 
-from pkg_resources import resource_stream
+# obtain version information
+from importlib.metadata import PackageNotFoundError, version
 
-# obtain version information from the version.cfg file
-cp = SafeConfigParser()
-cp.readfp(resource_stream(__name__, "version.cfg"))
-
-__version__ = cp.get("DEFAULT", "version")
-__date__ = cp.get("DEFAULT", "date")
-__gitsha__ = cp.get("DEFAULT", "commit")
-
-del cp
+try:
+    __version__ = version("diffpy.srxplanar")
+except PackageNotFoundError:
+    __version__ = "unknown"
 
 # End of file

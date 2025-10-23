@@ -1,0 +1,14 @@
+INFO: Number of function calls =       7
+INFO: Sum of squares =     2.3219
+INFO: Number of rejected coordinates =     0
+INFO: Number of function calls =       7
+INFO: Sum of squares =     2.3219
+INFO: Refined Beam centre =      1299.430      1010.190 (pixels)
+INFO: Refined Beam centre =      186.240       1.299 (mm)
+INFO: Refined sample to detector distance =      369.579 mm
+INFO: Refined wavelength =      0.1078 Angstroms
+      Energy (keV) =     115.0
+INFO: Refined tilt plane rotation angle =      49.715 degrees
+INFO: Refined tilt angle =        -1.480 degrees
+INFO: ROT X =        0.068   ROT Y =       -0.425 degrees
+INFO: Stability indicator (proportional to D-spacing; Angstroms) =    0.46505
