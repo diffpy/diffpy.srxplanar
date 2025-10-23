@@ -2,7 +2,7 @@ confutils Package
 =================
 
 :mod:`diffpy.confutils` Package
-------------------------
+-------------------------------
 
 .. automodule:: diffpy.confutils
     :members:
@@ -10,7 +10,7 @@ confutils Package
     :show-inheritance:
 
 :mod:`diffpy.confutils.config` Module
---------------------
+-------------------------------------
 
 .. automodule:: diffpy.confutils.config
     :members:
@@ -18,7 +18,7 @@ confutils Package
     :show-inheritance:
 
 :mod:`diffpy.confutils.tools` Module
--------------------
+------------------------------------
 
 .. automodule:: diffpy.confutils.tools
     :members:
@@ -26,7 +26,7 @@ confutils Package
     :show-inheritance:
 
 :mod:`diffpy.confutils.version` Module
----------------------
+--------------------------------------
 
 .. automodule:: diffpy.confutils.version
     :members:

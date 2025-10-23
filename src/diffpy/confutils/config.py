@@ -582,21 +582,22 @@ class ConfigBase(object):
         return
 
     def updateConfig(self, filename=None, args=None, **kwargs):
-        """Update config according to config file, args(from sys.argv)
-        or **kwargs.
+        """Update config according to a config file, args (from
+        ``sys.argv``), or ``**kwargs``.
 
-        1. call self._preUpdateConfig()
-        2. process file/args/kwargs passed to this method,
-        3. read a configfile if specified in args or kwargs
-        4. call self._postUpdateConfig()
-        5. write config file if specified in args/kwargs
+        Steps:
+          1. call ``self._preUpdateConfig()``
+          2. process file/args/kwargs passed to this method
+          3. read a config file if specified in ``args`` or ``kwargs``
+          4. call ``self._postUpdateConfig()``
+          5. write config file if specified in ``args``/``kwargs``
 
         :param filename: str, file name of the config file
-        :param args: list of str, args passed from cmd,
-        :param kwargs: dict, optional kwargs
-
+        :param args: list of str, args passed from cmd
+        :param kwargs: dict, optional keyword arguments
         :return: True if anything updated, False if nothing updated
         """
+
         # call self._preUpdateConfig
         self._preUpdateConfig(**kwargs)
 
