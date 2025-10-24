@@ -1,0 +1,18 @@
+{
+  "maintainer_name": "Simon Billinge",
+  "maintainer_email": "sb2896@columbia.edu",
+  "maintainer_github_username": "sbillinge",
+  "contributors": "Simon Billinge, Billinge Group members",
+  "license_holders": "The Trustees of Columbia University in the City of New York",
+  "project_name": "diffpy.srxplanar",
+  "github_username_or_orgname": "diffpy",
+  "github_repo_name": "diffpy.srxplanar",
+  "conda_pypi_package_dist_name": "diffpy.srxplanar",
+  "package_dir_name": "diffpy.srxplanar",
+  "project_short_description": "Distance Printer, calculate the inter atomic distances. Part of xPDFsuite",
+  "project_keywords": "diffpy, pdf, data interpretation",
+  "minimum_supported_python_version": "3.12",
+  "maximum_supported_python_version": "3.14",
+  "project_needs_c_code_compiled": "No",
+  "project_has_gui_tests": "No"
+}
