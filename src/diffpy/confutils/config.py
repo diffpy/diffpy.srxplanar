@@ -3,7 +3,7 @@
 #
 # diffpy.confutils  by DANSE Diffraction group
 #                   Simon J. L. Billinge
-#                   (c) 2012 Trustees of the Columbia University
+#                   (c) 2012-2025 Trustees of the Columbia University
 #                   in the City of New York.  All rights reserved.
 #
 # File coded by:    Xiaohao Yang
