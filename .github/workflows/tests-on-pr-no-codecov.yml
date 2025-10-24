@@ -12,6 +12,5 @@ jobs:
       c_extension: false
       headless: false
       python_version: "3.13"
-      run: |
-        conda install pre-commit
-        pre-commit run --all-files
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
