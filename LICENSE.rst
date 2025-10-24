@@ -1,7 +1,7 @@
 BSD 3-Clause License
 
 Copyright (c) 2008-2025, The Trustees of Columbia University in the City of New York.
-Copyright (c) 1994-2025, Christoph Gohlke
+Copyright (c) 1994-2014, Christoph Gohlke
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
