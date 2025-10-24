@@ -14,7 +14,7 @@ maintainers = [
 description = "Distance Printer, calculate the inter atomic distances. Part of xPDFsuite"
 keywords = ['diffpy', 'pdf', 'data interpretation']
 readme = "README.rst"
-requires-python = ">=3.12, <3.15"
+requires-python = ">=3.11, <3.14"
 classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
