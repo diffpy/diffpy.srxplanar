@@ -15,8 +15,14 @@
 .. |Black| image:: https://img.shields.io/badge/code_style-black-black
         :target: https://github.com/psf/black
 
+.. |Codecov| image:: https://codecov.io/gh/diffpy/diffpy.srxplanar/branch/main/graph/badge.svg
+        :target: https://codecov.io/gh/diffpy/diffpy.srxplanar
+
 .. |PR| image:: https://img.shields.io/badge/PR-Welcome-29ab47ff
         :target: https://github.com/diffpy/diffpy.srxplanar/pulls
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/diffpy.srxplanar
+        :target: https://pypi.org/project/diffpy.srxplanar/
 
 .. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/diffpy.srxplanar
         :target: https://pypi.org/project/diffpy.srxplanar/
