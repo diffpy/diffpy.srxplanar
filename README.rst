@@ -16,7 +16,7 @@
         :target: https://github.com/psf/black
 
 .. |CI| image:: https://github.com/diffpy/diffpy.cmi/actions/workflows/matrix-and-codecov-on-merge-to-main.yml/badge.svg
-        :target: https://github.com/diffpy/diffpy.cmi/actions/workflows/matrix-and-codecov-on-merge-to-main.yml
+        :target: https://github.com/diffpy/diffpy.srxplanar/actions/workflows/matrix-and-codecov-on-merge-to-main.yml
 
 .. |Codecov| image:: https://codecov.io/gh/diffpy/diffpy.srxplanar/branch/main/graph/badge.svg
         :target: https://codecov.io/gh/diffpy/diffpy.srxplanar
