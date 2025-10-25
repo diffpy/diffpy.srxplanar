@@ -67,7 +67,7 @@ class LoadImage(object):
         return pic
 
     def loadImage(self, filename):
-        """Load image file using pathlib only. If loading fails (e.g.
+        """Load image file using pathlib. If loading fails (e.g.
         incomplete file), retry for 5 seconds (10×0.5s).
 
         :param filename: str or Path, image file name or path
