@@ -83,7 +83,10 @@ class LoadImage(object):
             filenamefull = found_files[0] if found_files else None
 
         if filenamefull is None or not filenamefull.exists():
-            print(f"Warning: file not found: {filename}")
+            print(
+                f"Warning: file not found: {filename}, "
+                f"Please rerun specifying a valid filename."
+            )
             return np.zeros((100, 100))
 
         image = np.zeros((100, 100))
