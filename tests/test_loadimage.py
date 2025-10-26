@@ -27,12 +27,14 @@ load_image_param = [
 @pytest.mark.parametrize("input_path, expected", load_image_param)
 def test_load_image_cases(input_path, expected, user_filesystem):
     base_dir, home_dir, cwd_dir, test_dir = user_filesystem
+    test_file_dir = Path(__file__).parent
+    src_image = test_file_dir.parent / "docs/examples/example.tiff"
 
     # Copy test image into all directories
     for dir in [cwd_dir, home_dir, test_dir]:
         dst = Path(dir) / "example.tiff"
         dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy("../docs/examples/example.tiff", dst)
+        shutil.copy(src_image, dst)
 
     old_cwd = Path.cwd()
     os.chdir(home_dir)
