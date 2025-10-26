@@ -7,10 +7,10 @@ import pytest
 @pytest.fixture
 def user_filesystem(tmp_path):
     base_dir = Path(tmp_path)
-    input_dir = base_dir / "input_dir"
+    cwd_dir = base_dir / "cwd_dir"
     home_dir = base_dir / "home_dir"
     test_dir = base_dir / "test_dir"
-    for dir in (input_dir, home_dir, test_dir):
+    for dir in (cwd_dir, home_dir, test_dir):
         dir.mkdir(parents=True, exist_ok=True)
 
     home_config_data = {
@@ -22,7 +22,7 @@ def user_filesystem(tmp_path):
 
     yield {
         "base": base_dir,
-        "input": input_dir,
+        "cwd": cwd_dir,
         "home": home_dir,
         "test": test_dir,
     }
