@@ -25,7 +25,7 @@ load_image_param = [
 
 
 @pytest.mark.parametrize("input_path, expected", load_image_param)
-def test_load_image_cases(input_path, expected, user_filesystem):
+def test_load_image(input_path, expected, user_filesystem):
     home_dir = user_filesystem["home"]
     cwd_dir = user_filesystem["cwd"]
     os.chdir(cwd_dir)
