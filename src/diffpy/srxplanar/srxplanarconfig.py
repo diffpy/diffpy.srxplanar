@@ -15,8 +15,8 @@
 
 import numpy as np
 
-from diffpy.confutils.config import ConfigBase
-from diffpy.confutils.tools import _configPropertyRad
+from diffpy.srxconfutils.config import ConfigBase
+from diffpy.srxconfutils.tools import _configPropertyRad
 
 _description = """
 SrXplanar -- integrate 2D powder diffraction image to 1D
@@ -505,7 +505,7 @@ _defaultdata = {
 
 
 class SrXplanarConfig(ConfigBase):
-    """Config class, based on ConfigBase class in diffpy.confutils."""
+    """Config class, based on ConfigBase class in diffpy.srxconfutils."""
 
     # Text to display before the argument help
     _description = _description
