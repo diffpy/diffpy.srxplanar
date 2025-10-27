@@ -17,7 +17,7 @@ import os
 
 import numpy as np
 
-from diffpy.confutils.tools import _configPropertyR
+from diffpy.srxconfutils.tools import _configPropertyR
 
 
 class SaveResults(object):

@@ -16,7 +16,7 @@
 import numpy as np
 import scipy.ndimage.filters as snf
 
-from diffpy.confutils.tools import _configPropertyR
+from diffpy.srxconfutils.tools import _configPropertyR
 
 
 class Calculate(object):
