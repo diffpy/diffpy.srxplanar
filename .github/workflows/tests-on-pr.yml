@@ -12,5 +12,7 @@ jobs:
       c_extension: false
       headless: false
       python_version: 3.13
+      run: |
+        pip install diffpy.srxconfutils
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
