@@ -28,6 +28,9 @@ load_image_param = [
 def test_load_image_cases(input_path, expected, user_filesystem):
     base_dir, home_dir, cwd_dir, test_dir = user_filesystem
     test_file_dir = Path(__file__).parent
+    cwd_dir = test_file_dir / "cwd"
+    home_dir = test_file_dir / "home"
+    test_dir = test_file_dir / "test"
     src_image = test_file_dir.parent / "docs/examples/example.tiff"
 
     # Copy test image into all directories
@@ -44,7 +47,18 @@ def test_load_image_cases(input_path, expected, user_filesystem):
             "Cfg", (), {"fliphorizontal": True, "flipvertical": False}
         )()
         loader = LoadImage(cfg)
-        actual = loader.loadImage(input_path)
-        assert isinstance(actual, np.ndarray)
+
+        if expected:
+            # Handle case 1-3 for absolute, cwd, and home directory.
+            actual = loader.loadImage(input_path)
+            assert isinstance(actual, np.ndarray)
+        else:
+            # Handle Case 4 for missing file.
+            with pytest.raises(
+                FileNotFoundError,
+                match=r"file not found: .*"
+                r"Please rerun specifying a valid filename\.",
+            ):
+                loader.loadImage(input_path)
     finally:
         os.chdir(old_cwd)
