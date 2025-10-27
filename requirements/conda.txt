@@ -3,3 +3,4 @@ scipy
 fabio
 tifffile
 configparser
+diffpy.srxconfutils
