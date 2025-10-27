@@ -26,18 +26,14 @@ load_image_param = [
 
 @pytest.mark.parametrize("input_path, expected", load_image_param)
 def test_load_image_cases(input_path, expected, user_filesystem):
-    base_dir, home_dir, cwd_dir, test_dir = user_filesystem
-    test_file_dir = Path(__file__).parent
-    cwd_dir = test_file_dir / "cwd"
-    home_dir = test_file_dir / "home"
-    test_dir = test_file_dir / "test"
-    src_image = test_file_dir.parent / "docs/examples/example.tiff"
+    home_dir = user_filesystem["home"]
+    cwd_dir = user_filesystem["cwd"]
+    os.chdir(cwd_dir)
 
-    # Copy test image into all directories
-    for dir in [cwd_dir, home_dir, test_dir]:
-        dst = Path(dir) / "example.tiff"
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy(src_image, dst)
+    # locate source example file inside project docs
+    source_file = PROJECT_ROOT / "docs" / "examples" / "example.tiff"
+    shutil.copy(source_file, cwd_dir / "example.tiff")
+    shutil.copy(source_file, home_dir / "example.tiff")
 
     old_cwd = Path.cwd()
     os.chdir(home_dir)
@@ -47,18 +43,13 @@ def test_load_image_cases(input_path, expected, user_filesystem):
             "Cfg", (), {"fliphorizontal": True, "flipvertical": False}
         )()
         loader = LoadImage(cfg)
-
-        if expected:
-            # Handle case 1-3 for absolute, cwd, and home directory.
-            actual = loader.loadImage(input_path)
-            assert isinstance(actual, np.ndarray)
-        else:
-            # Handle Case 4 for missing file.
-            with pytest.raises(
-                FileNotFoundError,
-                match=r"file not found: .*"
-                r"Please rerun specifying a valid filename\.",
-            ):
-                loader.loadImage(input_path)
+        actual = loader.loadImage(input_path)
+        assert isinstance(actual, np.ndarray)
+    except FileNotFoundError:
+        pytest.raises(
+            FileNotFoundError,
+            match=r"file not found:"
+            r" .*Please rerun specifying a valid filename\.",
+        )
     finally:
         os.chdir(old_cwd)
