@@ -1,25 +1,17 @@
-import importlib
 from functools import partial
 
 import numpy as np
-from matplotlib import rcParams
 from scipy.optimize import leastsq, minimize
 
-rcParams["backend"] = "Qt4Agg"
 try:
-    importlib.import_module("PySide")
+    from matplotlib import rcParams
 
-    rcParams["backend.qt4"] = "PySide"
+    rcParams["backend"] = "QtAgg"
     import matplotlib.pyplot as plt
 
     mplenabled = True
 except ImportError:
-    try:
-        import matplotlib.pyplot as plt
-
-        mplenabled = True
-    except ImportError:
-        mplenabled = False
+    mplenabled = False
 
 
 def halfcut(
