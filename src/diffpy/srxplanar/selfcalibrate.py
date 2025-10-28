@@ -1,3 +1,4 @@
+import importlib
 from functools import partial
 
 import numpy as np
@@ -6,7 +7,7 @@ from scipy.optimize import leastsq, minimize
 
 rcParams["backend"] = "Qt4Agg"
 try:
-    import PySide  # noqa: F401
+    importlib.import_module("PySide")
 
     rcParams["backend.qt4"] = "PySide"
     import matplotlib.pyplot as plt

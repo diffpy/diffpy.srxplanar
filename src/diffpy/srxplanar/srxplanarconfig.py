@@ -505,7 +505,8 @@ _defaultdata = {
 
 
 class SrXplanarConfig(ConfigBase):
-    """Config class, based on ConfigBase class in diffpy.srxconfutils."""
+    """Config class, based on ConfigBase class in
+    diffpy.srxconfutils."""
 
     # Text to display before the argument help
     _description = _description

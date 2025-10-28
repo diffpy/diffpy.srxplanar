@@ -7,7 +7,7 @@
 # File coded by: Xiaohao Yang, Simon Billinge, Billinge Group members.
 #
 # See GitHub contributions for a more detailed list of contributors.
-# https://github.com/diffpy/diffpy.srxplanar/graphs/contributors  # noqa: E501
+# https://github.com/diffpy/diffpy.srxplanar/graphs/contributors
 #
 # See LICENSE.rst for license information.
 #
