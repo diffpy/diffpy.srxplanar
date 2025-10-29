@@ -20,7 +20,7 @@ load_image_param = [
     # expect file is found and correctly read
     ("./KFe2As2-00838.tif", True),
     # case 4: non-existent file that incurred by mistype.
-    ("nonexistent_file.tif", False),
+    ("nonexistent_file.tif", FileNotFoundError),
 ]
 
 
@@ -35,21 +35,17 @@ def test_load_image(input_path, expected, user_filesystem):
     shutil.copy(source_file, cwd_dir / "KFe2As2-00838.tif")
     shutil.copy(source_file, home_dir / "KFe2As2-00838.tif")
 
-    old_cwd = Path.cwd()
-    os.chdir(home_dir)
-
     try:
         cfg = type(
             "Cfg", (), {"fliphorizontal": True, "flipvertical": False}
         )()
         loader = LoadImage(cfg)
         actual = loader.loadImage(input_path)
-        assert isinstance(actual, np.ndarray)
+        expected = loader.loadImage(source_file)
+        assert np.array_equal(actual, expected)
     except FileNotFoundError:
         pytest.raises(
             FileNotFoundError,
             match=r"file not found:"
             r" .*Please rerun specifying a valid filename\.",
         )
-    finally:
-        os.chdir(old_cwd)
