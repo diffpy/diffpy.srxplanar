@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# diffpy.srxplanar documentation build configuration file, created by  # noqa: E501
+# diffpy.srxplanar documentation build configuration file, created by
 # sphinx-quickstart on Thu Jan 30 15:49:41 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -22,11 +22,11 @@ from pathlib import Path
 try:
     fullversion = version("diffpy.srxplanar")
 except Exception:
-    fullversion = "No version found. The correct version will appear in the released version."  # noqa: E501
+    fullversion = "No version found. The correct version will appear in the released version."
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
-# documentation root, use Path().resolve() to make it absolute, like shown here.  # noqa: E501
+# documentation root, use Path().resolve() to make it absolute, like shown here.
 # sys.path.insert(0, str(Path(".").resolve()))
 sys.path.insert(0, str(Path("../..").resolve()))
 sys.path.insert(0, str(Path("../../src").resolve()))
