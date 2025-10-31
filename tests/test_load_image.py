@@ -9,16 +9,22 @@ from diffpy.srxplanar.loadimage import LoadImage
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
+# Hardcoded expected quantity
+# These values were obtained using the following scratch script:
+# arr = tiff.imread("docs/examples/KFe2As2-00838.tif")
+# arr.mean()
+
+
 load_image_param = [
     # case 1: just filename of file in current directory.
     # expect function loads tiff file from cwd
-    ("KFe2As2-00838.tif", True),
+    ("KFe2As2-00838.tif", np.float32(2595.7087)),
     # case 2: absolute file path to file in another directory.
     # expect file is found and correctly read.
-    ("home_dir/KFe2As2-00838.tif", True),
+    ("home_dir/KFe2As2-00838.tif", np.float32(2595.7087)),
     # case 3: relative file path to file in another directory.
     # expect file is found and correctly read
-    ("./KFe2As2-00838.tif", True),
+    ("./KFe2As2-00838.tif", np.float32(2595.7087)),
     # case 4: non-existent file that incurred by mistype.
     ("nonexistent_file.tif", FileNotFoundError),
 ]
@@ -37,12 +43,11 @@ def test_load_image(file_name, expected, user_filesystem):
 
     try:
         cfg = type(
-            "Cfg", (), {"fliphorizontal": True, "flipvertical": False}
+            "Cfg", (), {"fliphorizontal": False, "flipvertical": False}
         )()
         loader = LoadImage(cfg)
-        actual = loader.load_image(file_name)
-        expected = loader.load_image(source_file)
-        assert np.array_equal(actual, expected)
+        actual = loader.load_image(file_name).mean()
+        assert actual == expected
     except FileNotFoundError:
         pytest.raises(
             FileNotFoundError,
