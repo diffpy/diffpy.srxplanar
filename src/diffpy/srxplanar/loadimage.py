@@ -25,14 +25,14 @@ from diffpy.confutils.tools import _configPropertyR
 try:
     import fabio
 
-    def openImage(im):
+    def open_image(im):
         rv = fabio.openimage.openimage(im)
         return rv.data
 
 except ImportError:
     import tifffile
 
-    def openImage(im):
+    def open_image(im):
         rv = tifffile.imread(im)
         return rv
 
@@ -54,7 +54,7 @@ class LoadImage(object):
         self.config = p
         return
 
-    def flipImage(self, pic):
+    def flip_image(self, pic):
         """Flip image if configured in config.
 
         :param pic: 2d array, image array
@@ -66,9 +66,9 @@ class LoadImage(object):
             pic = np.array(pic[::-1, :])
         return pic
 
-    def loadImage(self, filename):
-        """Load image file using pathlib. If loading fails (e.g.
-        incomplete file), retry for 5 seconds (10×0.5s).
+    def load_image(self, filename):
+        """Load image file. If loading fails (e.g. incomplete file),
+        retry for 5 seconds (10×0.5s).
 
         :param filename: str or Path, image file name or path
         :return: 2D ndarray, flipped image array
@@ -95,14 +95,14 @@ class LoadImage(object):
                 if filenamefull.suffix == ".npy":
                     image = np.load(filenamefull)
                 else:
-                    image = openImage(
+                    image = open_image(
                         str(filenamefull)
                     )  # openImage expects str
                 break
             except FileNotFoundError:
                 time.sleep(0.5)
 
-        image = self.flipImage(image)
+        image = self.flip_image(image)
         image[image < 0] = 0
         return image
 

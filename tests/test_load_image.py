@@ -24,8 +24,8 @@ load_image_param = [
 ]
 
 
-@pytest.mark.parametrize("input_path, expected", load_image_param)
-def test_load_image(input_path, expected, user_filesystem):
+@pytest.mark.parametrize("file_name, expected", load_image_param)
+def test_load_image(file_name, expected, user_filesystem):
     home_dir = user_filesystem["home"]
     cwd_dir = user_filesystem["cwd"]
     os.chdir(cwd_dir)
@@ -40,8 +40,8 @@ def test_load_image(input_path, expected, user_filesystem):
             "Cfg", (), {"fliphorizontal": True, "flipvertical": False}
         )()
         loader = LoadImage(cfg)
-        actual = loader.loadImage(input_path)
-        expected = loader.loadImage(source_file)
+        actual = loader.load_image(file_name)
+        expected = loader.load_image(source_file)
         assert np.array_equal(actual, expected)
     except FileNotFoundError:
         pytest.raises(

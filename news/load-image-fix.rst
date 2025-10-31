@@ -16,7 +16,7 @@
 
 **Fixed:**
 
-* Fixed `loadimage` function in any directory.
+* `load_image()` function correctly finds files when passed a relative path.
 
 **Security:**
 
