@@ -1,8 +1,8 @@
 import os
 import shutil
 from pathlib import Path
+from unittest.mock import Mock
 
-import numpy as np
 import pytest
 
 from diffpy.srxplanar.loadimage import LoadImage
@@ -33,24 +33,23 @@ def test_load_image(file_name, user_filesystem):
     # These values were obtained from docs/examples/data/KFe2As2-00838.tif
     expected_mean = 2595.7087
     expected_shape = (2048, 2048)
-    expected_first_point = ?
-    expected_last_point = ?
+    expected_first_point = 0
+    expected_last_point = 0
 
     # locate source example file inside project docs
-    source_file = PROJECT_ROOT / "docs" / "examples" / "data" / "KFe2As2-00838.tif"
+    source_file = (
+        PROJECT_ROOT / "docs" / "examples" / "data" / "KFe2As2-00838.tif"
+    )
     shutil.copy(source_file, cwd_dir / "KFe2As2-00838.tif")
     shutil.copy(source_file, home_dir / "KFe2As2-00838.tif")
 
     try:
-        cfg = type(
-            "Cfg", (), {"fliphorizontal": False, "flipvertical": False}
-        )()
-        loader = LoadImage(cfg)
+        loader = LoadImage(Mock(fliphorizontal=False, flipvertical=False))
         actual = loader.load_image(file_name)
         assert actual.shape == expected_shape
         assert actual.mean() == expected_mean
-        assert actual[0] == expected_first_point
-        assert actual[-1] == expected_last_point
+        assert actual[0][0] == expected_first_point
+        assert actual[-1][-1] == expected_last_point
     except FileNotFoundError:
         pytest.raises(
             FileNotFoundError,
