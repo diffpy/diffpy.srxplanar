@@ -9,12 +9,6 @@ from diffpy.srxplanar.loadimage import LoadImage
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-# Hardcoded expected quantity
-# These values were obtained using the following scratch script:
-# arr = tiff.imread("docs/examples/KFe2As2-00838.tif")
-# arr.mean(), arr.shape
-
-
 load_image_param = [
     # case 1: just filename of file in current directory.
     # expect function loads tiff file from cwd
@@ -36,8 +30,14 @@ def test_load_image(file_name, user_filesystem):
     cwd_dir = user_filesystem["cwd"]
     os.chdir(cwd_dir)
 
+    # These values were obtained from docs/examples/data/KFe2As2-00838.tif
+    expected_mean = 2595.7087
+    expected_shape = (2048, 2048)
+    expected_first_point = ?
+    expected_last_point = ?
+
     # locate source example file inside project docs
-    source_file = PROJECT_ROOT / "docs" / "examples" / "KFe2As2-00838.tif"
+    source_file = PROJECT_ROOT / "docs" / "examples" / "data" / "KFe2As2-00838.tif"
     shutil.copy(source_file, cwd_dir / "KFe2As2-00838.tif")
     shutil.copy(source_file, home_dir / "KFe2As2-00838.tif")
 
@@ -47,10 +47,10 @@ def test_load_image(file_name, user_filesystem):
         )()
         loader = LoadImage(cfg)
         actual = loader.load_image(file_name)
-        expected_mean = np.float32(2595.7087)
-        expected_shape = (2048, 2048)
         assert actual.shape == expected_shape
         assert actual.mean() == expected_mean
+        assert actual[0] == expected_first_point
+        assert actual[-1] == expected_last_point
     except FileNotFoundError:
         pytest.raises(
             FileNotFoundError,
