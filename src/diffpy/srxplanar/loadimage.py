@@ -54,7 +54,7 @@ class LoadImage(object):
         self.config = p
         return
 
-    def flip_image(self, pic, fliphorizontal=False, flipvertical=False):
+    def flip_image(self, pic):
         """Flip image if configured in config.
 
         :param pic: 2d array, image array
@@ -66,7 +66,7 @@ class LoadImage(object):
             pic = np.array(pic[::-1, :])
         return pic
 
-    def load_image(self, filename, fliphorizontal=False, flipvertical=False):
+    def load_image(self, filename):
         """Load image file. If loading fails (e.g. incomplete file),
         retry for 5 seconds (10×0.5s).
 
@@ -99,7 +99,7 @@ class LoadImage(object):
                 break
             except FileNotFoundError:
                 time.sleep(0.5)
-        image = self.flip_image(image, fliphorizontal, flipvertical)
+        image = self.flip_image(image)
         image[image < 0] = 0
         return image
 
