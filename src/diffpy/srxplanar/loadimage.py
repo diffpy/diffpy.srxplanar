@@ -16,6 +16,7 @@
 import fnmatch
 import os
 import time
+from pathlib import Path
 
 import numpy as np
 
@@ -24,14 +25,14 @@ from diffpy.srxconfutils.tools import _configPropertyR
 try:
     import fabio
 
-    def openImage(im):
+    def open_image(im):
         rv = fabio.openimage.openimage(im)
         return rv.data
 
 except ImportError:
     import tifffile
 
-    def openImage(im):
+    def open_image(im):
         rv = tifffile.imread(im)
         return rv
 
@@ -53,7 +54,7 @@ class LoadImage(object):
         self.config = p
         return
 
-    def flipImage(self, pic):
+    def flip_image(self, pic):
         """Flip image if configured in config.
 
         :param pic: 2d array, image array
@@ -65,32 +66,41 @@ class LoadImage(object):
             pic = np.array(pic[::-1, :])
         return pic
 
-    def loadImage(self, filename):
-        """Load image file, if failed (for example loading an incomplete
-        file), then it will keep trying loading file for 5s.
+    def load_image(self, filename):
+        """Load image file. If loading fails (e.g. incomplete file),
+        retry for 5 seconds (10×0.5s).
 
-        :param filename: str, image file name
-        :return: 2d ndarray, 2d image array (flipped)
+        :param filename: str or Path, image file name or path
+        :return: 2D ndarray, flipped image array
         """
-        if os.path.exists(filename):
+        filename = Path(
+            filename
+        ).expanduser()  # handle "~", make it a Path object
+        if filename.exists():
             filenamefull = filename
         else:
-            filenamefull = os.path.join(self.opendirectory, filename)
-        image = np.zeros(10000).reshape(100, 100)
-        if os.path.exists(filenamefull):
-            i = 0
-            while i < 10:
-                try:
-                    if os.path.splitext(filenamefull)[-1] == ".npy":
-                        image = np.load(filenamefull)
-                    else:
-                        image = openImage(filenamefull)
-                    i = 10
-                except FileNotFoundError:
-                    i = i + 1
-                    time.sleep(0.5)
-            image = self.flipImage(image)
-            image[image < 0] = 0
+            found_files = list(Path.home().rglob(filename.name))
+            filenamefull = found_files[0] if found_files else None
+
+        if filenamefull is None or not filenamefull.exists():
+            raise FileNotFoundError(
+                f"Error: file not found: {filename}, "
+                f"Please rerun specifying a valid filename."
+            )
+            return np.zeros((100, 100))
+
+        image = np.zeros((100, 100))
+        for _ in range(10):  # retry 10 times (5 seconds total)
+            try:
+                if filenamefull.suffix == ".npy":
+                    image = np.load(filenamefull)
+                else:
+                    image = open_image(filenamefull)
+                break
+            except FileNotFoundError:
+                time.sleep(0.5)
+        image = self.flip_image(image)
+        image[image < 0] = 0
         return image
 
     def genFileList(

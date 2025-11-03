@@ -155,7 +155,7 @@ class SrXplanar(object):
                 rv += self._getPic(imagefile)
             rv /= len(image)
         elif isinstance(image, str):
-            rv = self.loadimage.loadImage(image)
+            rv = self.loadimage.load_image(image)
             if correction is None or correction is True:
                 ce = self.config.cropedges
                 rv[ce[2] : -ce[3], ce[0] : -ce[1]] = (
@@ -165,7 +165,7 @@ class SrXplanar(object):
         else:
             rv = image
             if flip is True:
-                rv = self.loadimage.flipImage(rv)
+                rv = self.loadimage.flip_image(rv)
             if correction is True:
                 # rv *= self.correction
                 ce = self.config.cropedges
@@ -339,13 +339,13 @@ class SrXplanar(object):
                     pic = self.pic
                 else:
                     pic = (
-                        self.loadimage.loadImage(filelist[0])
+                        self.loadimage.load_image(filelist[0])
                         if len(filelist) > 0
                         else None
                     )
             else:
                 pic = (
-                    self.loadimage.loadImage(filelist[0])
+                    self.loadimage.load_image(filelist[0])
                     if len(filelist) > 0
                     else None
                 )
