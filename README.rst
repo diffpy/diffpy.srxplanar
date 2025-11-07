@@ -63,12 +63,33 @@ by citing the following paper in your publication:
 Installation
 ------------
 
-The preferred method is to be installed with `xpdfsuite` package or the wheel file.
+The preferred method is to use `Miniconda Python
+<https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html>`_
+and install from the "conda-forge" channel of Conda packages.
 
-To install the package with the wheel file, you can first download the wheel file, then type
+To add "conda-forge" to the conda channels, run the following in a terminal. ::
 
-`pip install /path/to/diffpy.srxplanar-X.Y.Z-py3-none-any.whl`.
+        conda config --add channels conda-forge
 
+We want to install our packages in a suitable conda environment.
+The following creates and activates a new environment named ``diffpy.srxplanar_env`` ::
+
+        conda create -n diffpy.srxplanar_env diffpy.srxplanar
+        conda activate diffpy.srxplanar_env
+
+The output should print the latest version displayed on the badges above.
+
+If the above does not work, you can use ``pip`` to download and install the latest release from
+`Python Package Index <https://pypi.python.org>`_.
+To install using ``pip`` into your ``diffpy.srxplanar_env`` environment, type ::
+
+        pip install diffpy.srxplanar
+
+If you prefer to install from sources, after installing the dependencies, obtain the source archive from
+`GitHub <https://github.com/diffpy/diffpy.srxplanar/>`_. Once installed, ``cd`` into your ``diffpy.srxplanar`` directory
+and run the following ::
+
+        pip install .
 
 This package also provides command-line utilities. To check the software has been installed correctly, type ::
 
