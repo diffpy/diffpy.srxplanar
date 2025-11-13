@@ -77,6 +77,10 @@ The following creates and activates a new environment named ``diffpy.srxplanar_e
         conda create -n diffpy.srxplanar_env diffpy.srxplanar
         conda activate diffpy.srxplanar_env
 
+To confirm that the installation was successful, type ::
+
+        python -c "import diffpy.srxplanar; print(diffpy.srxplanar.__version__)"
+
 The output should print the latest version displayed on the badges above.
 
 If the above does not work, you can use ``pip`` to download and install the latest release from
