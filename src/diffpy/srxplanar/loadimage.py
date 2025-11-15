@@ -73,21 +73,13 @@ class LoadImage(object):
         :param filename: str or Path, image file name or path
         :return: 2D ndarray, flipped image array
         """
-        filename = Path(
-            filename
-        ).expanduser()  # handle "~", make it a Path object
-        if filename.exists():
-            filenamefull = filename
-        else:
-            found_files = list(Path.home().rglob(filename.name))
-            filenamefull = found_files[0] if found_files else None
+        filenamefull = Path(filename).resolve()
 
-        if filenamefull is None or not filenamefull.exists():
+        if not filenamefull.exists():
             raise FileNotFoundError(
                 f"Error: file not found: {filename}, "
                 f"Please rerun specifying a valid filename."
             )
-            return np.zeros((100, 100))
 
         image = np.zeros((100, 100))
         for _ in range(10):  # retry 10 times (5 seconds total)
