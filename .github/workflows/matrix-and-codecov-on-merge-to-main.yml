@@ -17,8 +17,6 @@ jobs:
       project: diffpy.srxplanar
       c_extension: false
       headless: false
-      run: |
-        pip install diffpy.srxconfutils
 
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
