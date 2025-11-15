@@ -97,7 +97,7 @@ and run the following ::
 
 This package also provides command-line utilities. To check the software has been installed correctly, type ::
 
-        diffpy-srxplanar --version
+        srxplanar --version
 
 You can also type the following command to verify the installation. ::
 
@@ -106,7 +106,7 @@ You can also type the following command to verify the installation. ::
 
 To view the basic usage and available commands, type ::
 
-        diffpy-srxplanar -h
+        srxplanar -h
 
 Getting Started
 ---------------
