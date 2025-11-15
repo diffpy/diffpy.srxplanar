@@ -1,9 +1,9 @@
 graft src
 graft tests
 graft requirements
+graft docs/examples
 
 include AUTHORS.rst LICENSE*.rst README.rst
-include docs/examples/data/KFe2As2-00838.tif
 
 # Exclude all bytecode files and __pycache__ directories
 global-exclude *.py[cod]  # Exclude all .pyc, .pyo, and .pyd files.
