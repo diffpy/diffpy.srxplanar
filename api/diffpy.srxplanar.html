@@ -1,1296 +1,151 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>diffpy.srxplanar package &mdash; diffpy.srxplanar 1.0.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>srxplanar Package &mdash; diffpy.srxplanar  documentation</title>
-    
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/sidebar.js"></script>
-    <link rel="top" title="diffpy.srxplanar  documentation" href="../index.html" />
-    <link rel="up" title="diffpy Package" href="diffpy.html" />
-    <link rel="prev" title="confutils Package" href="diffpy.confutils.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="diffpy.confutils.html" title="confutils Package"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">diffpy.srxplanar  documentation</a> &raquo;</li>
-          <li><a href="diffpy.html" accesskey="U">diffpy Package</a> &raquo;</li> 
-      </ul>
-    </div>  
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=7f30c25e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="diffpy" href="modules.html" />
+    <link rel="prev" title="diffpy.srxplanar documentation" href="../index.html" /> 
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="srxplanar-package">
-<h1>srxplanar Package<a class="headerlink" href="#srxplanar-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2><tt class="xref py py-mod docutils literal"><span class="pre">srxplanar</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-diffpy.srxplanar"></span></div>
-<div class="section" id="module-diffpy.srxplanar.calculate">
-<span id="calculate-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">calculate</span></tt> Module<a class="headerlink" href="#module-diffpy.srxplanar.calculate" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="diffpy.srxplanar.calculate.Calculate">
-<em class="property">class </em><tt class="descclassname">diffpy.srxplanar.calculate.</tt><tt class="descname">Calculate</tt><big>(</big><em>p</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
-<p>provide methods for integration, variance calculation and distance/Q matrix calculation etc.</p>
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.calculateIntensity">
-<tt class="descname">calculateIntensity</tt><big>(</big><em>pic</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.calculateIntensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>calculate the 1D intensity</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pic</strong> &#8211; 2D array, array of raw counts, raw counts should be corrected</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retrun :</th><td class="field-body">1d array, 1D integrated intensity</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.calculateVariance">
-<tt class="descname">calculateVariance</tt><big>(</big><em>pic</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.calculateVariance" title="Permalink to this definition">¶</a></dt>
-<dd><p>calculate the 1D intensity</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pic</strong> &#8211; 2D array, array of raw counts, raw counts should be corrected</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retrun :</th><td class="field-body">1d array, variance of integrated intensity</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.calculateVarianceLocal">
-<tt class="descname">calculateVarianceLocal</tt><big>(</big><em>pic</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.calculateVarianceLocal" title="Permalink to this definition">¶</a></dt>
-<dd><p>calculate the variance of raw counts of each pixel are calculated according to their 
-loacl variance.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>picflat</strong> &#8211; 1d array, flattend image array</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">2d array, variance of each pixel</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.distance">
-<tt class="descname">distance</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.distance" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.genCorrectionMatrix">
-<tt class="descname">genCorrectionMatrix</tt><big>(</big><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.genCorrectionMatrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>generate correction matrix. multiple the 2D raw counts array by this correction matrix
-to get corrected raw counts. It will calculate solid angle correction or polarization correction.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">2d array, correction matrix to apply on the image</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.genDistanceMatrix">
-<tt class="descname">genDistanceMatrix</tt><big>(</big><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.genDistanceMatrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the distance matrix</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">2d array, distance between source and each pixel</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.genIntegrationInds">
-<tt class="descname">genIntegrationInds</tt><big>(</big><em>mask=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.genIntegrationInds" title="Permalink to this definition">¶</a></dt>
-<dd><p>generate self.bin_number used in integration</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mask</strong> &#8211; mask 2D array, same dimension as image, 1 for masked pixel</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">self.bin_number</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.genQMatrix">
-<tt class="descname">genQMatrix</tt><big>(</big><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.genQMatrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the q matrix</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">2d array, q value of each pixel&#8217;s center</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.genTTHMatrix">
-<tt class="descname">genTTHMatrix</tt><big>(</big><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.genTTHMatrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the diffraction angle matrix</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">2d array, two theta angle of each pixel&#8217;s center</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.genTTHorQMatrix">
-<tt class="descname">genTTHorQMatrix</tt><big>(</big><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.genTTHorQMatrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>generate a twotheta matrix or q matrix which stores the tth or q value
-or each pixel</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.integrationspace">
-<tt class="descname">integrationspace</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.integrationspace" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.intensity">
-<tt class="descname">intensity</tt><big>(</big><em>pic</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.intensity" title="Permalink to this definition">¶</a></dt>
-<dd><p>2D to 1D image integration, intensity of pixels are binned and then take average,</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pic</strong> &#8211; 2D array, array of raw counts, raw counts should be corrected</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retrun :</th><td class="field-body">2d array, [tthorq, intensity, unceratinty] or [tthorq, intensity]</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.polcorrectf">
-<tt class="descname">polcorrectf</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.polcorrectf" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.polcorrectionenable">
-<tt class="descname">polcorrectionenable</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.polcorrectionenable" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.calculate.Calculate.prepareCalculation">
-<tt class="descname">prepareCalculation</tt><big>(</big><big>)</big><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.prepareCalculation" title="Permalink to this definition">¶</a></dt>
-<dd><p>prepare data for calculation</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.qmax">
-<tt class="descname">qmax</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.qmax" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.qstep">
-<tt class="descname">qstep</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.qstep" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.rotation">
-<tt class="descname">rotation</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.rotation" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.sacorrectionenable">
-<tt class="descname">sacorrectionenable</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.sacorrectionenable" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.tilt">
-<tt class="descname">tilt</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.tilt" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.tthmax">
-<tt class="descname">tthmax</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.tthmax" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.tthmaxd">
-<tt class="descname">tthmaxd</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.tthmaxd" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.tthorqmax">
-<tt class="descname">tthorqmax</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.tthorqmax" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.tthorqstep">
-<tt class="descname">tthorqstep</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.tthorqstep" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.tthstep">
-<tt class="descname">tthstep</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.tthstep" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.tthstepd">
-<tt class="descname">tthstepd</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.tthstepd" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.uncertaintyenable">
-<tt class="descname">uncertaintyenable</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.uncertaintyenable" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.wavelength">
-<tt class="descname">wavelength</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.wavelength" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.xbeamcenter">
-<tt class="descname">xbeamcenter</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.xbeamcenter" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.xdimension">
-<tt class="descname">xdimension</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.xdimension" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.xpixelsize">
-<tt class="descname">xpixelsize</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.xpixelsize" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.ybeamcenter">
-<tt class="descname">ybeamcenter</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.ybeamcenter" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.ydimension">
-<tt class="descname">ydimension</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.ydimension" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.calculate.Calculate.ypixelsize">
-<tt class="descname">ypixelsize</tt><a class="headerlink" href="#diffpy.srxplanar.calculate.Calculate.ypixelsize" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-</dd></dl>
-
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            diffpy.srxplanar
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-<div class="section" id="module-diffpy.srxplanar.loadimage">
-<span id="loadimage-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">loadimage</span></tt> Module<a class="headerlink" href="#module-diffpy.srxplanar.loadimage" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="diffpy.srxplanar.loadimage.LoadImage">
-<em class="property">class </em><tt class="descclassname">diffpy.srxplanar.loadimage.</tt><tt class="descname">LoadImage</tt><big>(</big><em>p</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
-<p>provide methods to filter files and load images</p>
-<dl class="attribute">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.excludepattern">
-<tt class="descname">excludepattern</tt><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.excludepattern" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.filenames">
-<tt class="descname">filenames</tt><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.filenames" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.flipImage">
-<tt class="descname">flipImage</tt><big>(</big><em>pic</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.flipImage" title="Permalink to this definition">¶</a></dt>
-<dd><p>flip image if configured in config</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pic</strong> &#8211; 2d array, image array</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">2d array, flipped image array</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.fliphorizontal">
-<tt class="descname">fliphorizontal</tt><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.fliphorizontal" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.flipvertical">
-<tt class="descname">flipvertical</tt><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.flipvertical" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.genFileList">
-<tt class="descname">genFileList</tt><big>(</big><em>filenames=None</em>, <em>opendir=None</em>, <em>includepattern=None</em>, <em>excludepattern=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.genFileList" title="Permalink to this definition">¶</a></dt>
-<dd><p>generate the list of file in opendir according to include/exclude pattern</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filenames</strong> &#8211; list of str, list of file name patterns, all files match ANY pattern in this list will be included</li>
-<li><strong>opendir</strong> &#8211; str, the directory to get files</li>
-<li><strong>includepattern</strong> &#8211; list of str, list of wildcard of files that will be loaded, 
-all files match ALL patterns in this list will be included</li>
-<li><strong>excludepattern</strong> &#8211; list of str, list of wildcard of files that will be blocked,
-any files match ANY patterns in this list will be blocked</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of str, a list of filenames (not include their full path)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.genFileSet">
-<tt class="descname">genFileSet</tt><big>(</big><em>filenames=None</em>, <em>opendir=None</em>, <em>includepattern=None</em>, <em>excludepattern=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.genFileSet" title="Permalink to this definition">¶</a></dt>
-<dd><p>generate the list of file in opendir according to include/exclude pattern</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filenames</strong> &#8211; list of str, list of file name patterns, all files match ANY pattern in this list will be included</li>
-<li><strong>opendir</strong> &#8211; str, the directory to get files</li>
-<li><strong>includepattern</strong> &#8211; list of str, list of wildcard of files that will be loaded, 
-all files match ALL patterns in this list will be included</li>
-<li><strong>excludepattern</strong> &#8211; list of str, list of wildcard of files that will be blocked,
-any files match ANY patterns in this list will be blocked</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">set of str, a list of filenames (not include their full path)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.includepattern">
-<tt class="descname">includepattern</tt><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.includepattern" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.loadImage">
-<tt class="descname">loadImage</tt><big>(</big><em>filename</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.loadImage" title="Permalink to this definition">¶</a></dt>
-<dd><p>load image, then subtract the background if configed in self.backgroundpic.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> &#8211; str, image file name</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">2d ndarray, 2d image array (flipped)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.opendirectory">
-<tt class="descname">opendirectory</tt><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.opendirectory" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.xdimension">
-<tt class="descname">xdimension</tt><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.xdimension" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.loadimage.LoadImage.ydimension">
-<tt class="descname">ydimension</tt><a class="headerlink" href="#diffpy.srxplanar.loadimage.LoadImage.ydimension" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-diffpy.srxplanar.mask">
-<span id="mask-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">mask</span></tt> Module<a class="headerlink" href="#module-diffpy.srxplanar.mask" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="diffpy.srxplanar.mask.Mask">
-<em class="property">class </em><tt class="descclassname">diffpy.srxplanar.mask.</tt><tt class="descname">Mask</tt><big>(</big><em>p</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.mask.Mask" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
-<p>provide methods for mask generation, including:</p>
-<p>static mask: fit2d (.msk) mask, tif mask, npy mask, masking edge pixels, 
-dymanic mask: masking dead pixels, bright pixels</p>
-<dl class="attribute">
-<dt id="diffpy.srxplanar.mask.Mask.addmask">
-<tt class="descname">addmask</tt><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.addmask" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.mask.Mask.brightPixelMask">
-<tt class="descname">brightPixelMask</tt><big>(</big><em>pic</em>, <em>size=5</em>, <em>r=1.2</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.brightPixelMask" title="Permalink to this definition">¶</a></dt>
-<dd><p>pixels with much higher intensity compare to adjacent pixels will be masked,
-this mask is used when there are some bright spots/pixels whose intensity is higher 
-than its neighbors but not too high. Only use this on a very good powder averaged 
-data. Otherwise it may mask wrong pixels.</p>
-<p>This mask has similar functions as &#8216;selfcorr&#8217; function. However, this mask will only 
-consider pixels&#8217; local neighbors pixels and tend to mask more pixels. While &#8216;selfcorr&#8217; 
-function compare one pixel to other pixels in same bin.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>pic</strong> &#8211; 2d array, image array to be processed</li>
-<li><strong>size</strong> &#8211; int, size of local area to test if a pixel is a bright pixel</li>
-<li><strong>r</strong> &#8211; float, a threshold for masked pixels</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">2d array of boolean, 1 stands for masked pixel</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.mask.Mask.deadPixelMask">
-<tt class="descname">deadPixelMask</tt><big>(</big><em>pic</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.deadPixelMask" title="Permalink to this definition">¶</a></dt>
-<dd><p>pixels with much lower intensity compare to adjacent pixels will be masked</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pic</strong> &#8211; 2d array, image array to be processed</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">2d array of boolean, 1 stands for masked pixel</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.mask.Mask.dynamicMask">
-<tt class="descname">dynamicMask</tt><big>(</big><em>pic</em>, <em>addmask=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.dynamicMask" title="Permalink to this definition">¶</a></dt>
-<dd><p>create a dynamic mask according to image array. This mask changes for different images</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>pic</strong> &#8211; 2d array, image array to be processed</li>
-<li><strong>addmask</strong> &#8211; list of string, [&#8216;deadpixel&#8217;, &#8216;brightpixel&#8217;]
-deadpixel: pixels with much lower intensity compare to adjacent pixels will be masked
-brightpixel: pixels with much higher intensity compare to adjacent pixels will be masked</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">2d array of boolean, 1 stands for masked pixel</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.mask.Mask.edgeMask">
-<tt class="descname">edgeMask</tt><big>(</big><em>edges=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.edgeMask" title="Permalink to this definition">¶</a></dt>
-<dd><p>mask the pixels near edge and around corner</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>edges</strong> &#8211; list of int (length of 5), first 4 are numbers of pixels masked at each edge
-in (left, right, top, bottom), last one is the radius of round cut at the corner</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">2d array of boolean, 1 stands for masked pixel</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.mask.Mask.flipImage">
-<tt class="descname">flipImage</tt><big>(</big><em>pic</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.flipImage" title="Permalink to this definition">¶</a></dt>
-<dd><p>flip image if configured in config</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pic</strong> &#8211; 2d array, image array</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">2d array, flipped image array</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.mask.Mask.fliphorizontal">
-<tt class="descname">fliphorizontal</tt><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.fliphorizontal" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.mask.Mask.flipvertical">
-<tt class="descname">flipvertical</tt><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.flipvertical" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.mask.Mask.maskedges">
-<tt class="descname">maskedges</tt><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.maskedges" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.mask.Mask.saveMask">
-<tt class="descname">saveMask</tt><big>(</big><em>filename</em>, <em>pic=None</em>, <em>addmask=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.saveMask" title="Permalink to this definition">¶</a></dt>
-<dd><p>generate a mask according to the addmask and pic. save it to .npy. 1 stands for masked pixel
-the mask has same order as the pic, which means if the pic is flipped, the mask is fliped
-(when pic is loaded though loadimage, it is flipped)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> &#8211; str, filename of mask file to be save</li>
-<li><strong>pic</strong> &#8211; 2d array, image array</li>
-<li><strong>addmask</strong> &#8211; list of str, control which mask to generate</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">2d array of boolean, 1 stands for masked pixel</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.mask.Mask.staticMask">
-<tt class="descname">staticMask</tt><big>(</big><em>addmask=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.staticMask" title="Permalink to this definition">¶</a></dt>
-<dd><p>create a static mask according existing mask file. This mask remain unchanged for different images</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>addmask</strong> &#8211; list of string, file name of mask and/or &#8216;edge&#8217;, 
-mask file supported: .msk, .npy, .tif file, ATTN: mask array should be already flipped, 
-and 1 (or larger) stands for masked pixels, 0(&lt;0) stands for unmasked pixels
-if &#8216;edge&#8217; is specified here. it will create a mask that mask the pixel near the edge of detector,
-require self.maskedges</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">2d array of boolean, 1 stands for masked pixel</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.mask.Mask.undersample">
-<tt class="descname">undersample</tt><big>(</big><em>undersamplerate</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.undersample" title="Permalink to this definition">¶</a></dt>
-<dd><p>a special mask used for undesampling image. It will create a mask that
-discard (total number*(1-undersamplerate)) pixels
-:param undersamplerate: float, 0~1, ratio of pixels to keep</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">2d array of boolean, 1 stands for masked pixel</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.mask.Mask.wavelength">
-<tt class="descname">wavelength</tt><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.wavelength" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.mask.Mask.xdimension">
-<tt class="descname">xdimension</tt><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.xdimension" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.mask.Mask.ydimension">
-<tt class="descname">ydimension</tt><a class="headerlink" href="#diffpy.srxplanar.mask.Mask.ydimension" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-diffpy.srxplanar.saveresults">
-<span id="saveresults-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">saveresults</span></tt> Module<a class="headerlink" href="#module-diffpy.srxplanar.saveresults" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="diffpy.srxplanar.saveresults.SaveResults">
-<em class="property">class </em><tt class="descclassname">diffpy.srxplanar.saveresults.</tt><tt class="descname">SaveResults</tt><big>(</big><em>p</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
-<p>save results into files</p>
-<dl class="attribute">
-<dt id="diffpy.srxplanar.saveresults.SaveResults.filenameplus">
-<tt class="descname">filenameplus</tt><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults.filenameplus" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.saveresults.SaveResults.getFilePathWithoutExt">
-<tt class="descname">getFilePathWithoutExt</tt><big>(</big><em>filename</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults.getFilePathWithoutExt" title="Permalink to this definition">¶</a></dt>
-<dd><p>get the normalized full path of filename with out extension</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> &#8211; string, could be full path or file name only and with/without ext, only the base part of filename is used.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string, full normalized path of file without extension</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.saveresults.SaveResults.gsasoutput">
-<tt class="descname">gsasoutput</tt><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults.gsasoutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.saveresults.SaveResults.integrationspace">
-<tt class="descname">integrationspace</tt><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults.integrationspace" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.saveresults.SaveResults.prepareCalculation">
-<tt class="descname">prepareCalculation</tt><big>(</big><big>)</big><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults.prepareCalculation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.saveresults.SaveResults.save">
-<tt class="descname">save</tt><big>(</big><em>rv</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>save diffraction intensity in .chi and gsas format(optional)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rv</strong> &#8211; dict, result include integrated diffration intensity
-the rv[&#8216;chi&#8217;] should be a 2d array with shape (2,len of intensity) or (3, len of intensity)
-file name is generated according to orginal file name and savedirectory</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.saveresults.SaveResults.saveChi">
-<tt class="descname">saveChi</tt><big>(</big><em>xrd</em>, <em>filename</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults.saveChi" title="Permalink to this definition">¶</a></dt>
-<dd><p>save diffraction intensity in .chi</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>xrd</strong> &#8211; 2d array with shape (2,len of intensity) or (3, len of intensity), [tthorq, intensity, (unceratinty)]</li>
-<li><strong>filename</strong> &#8211; str, base file name</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.saveresults.SaveResults.saveGSAS">
-<tt class="descname">saveGSAS</tt><big>(</big><em>xrd</em>, <em>filename</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults.saveGSAS" title="Permalink to this definition">¶</a></dt>
-<dd><p>save diffraction intensity in gsas format</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>xrd</strong> &#8211; 2d array with shape (2,len of intensity) or (3, len of intensity), [tthorq, intensity, (unceratinty)]</li>
-<li><strong>filename</strong> &#8211; str, base file name</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.saveresults.SaveResults.savedirectory">
-<tt class="descname">savedirectory</tt><a class="headerlink" href="#diffpy.srxplanar.saveresults.SaveResults.savedirectory" title="Permalink to this definition">¶</a></dt>
-<dd><p>attribute forwarded to self.config, read-only</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="diffpy.srxplanar.saveresults.writeGSASStr">
-<tt class="descclassname">diffpy.srxplanar.saveresults.</tt><tt class="descname">writeGSASStr</tt><big>(</big><em>name</em>, <em>mode</em>, <em>tth</em>, <em>iobs</em>, <em>esd=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.saveresults.writeGSASStr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return string of integrated intensities in GSAS format.
-:param mode: string, gsas file type, could be &#8216;std&#8217;, &#8216;esd&#8217;, &#8216;fxye&#8217; (gsas format)
-:param tth: ndarray, two theta angle
-:param iobs: ndarray, Xrd intensity
-:param esd: ndarray, optional error value of intensity</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">string, a string to be saved to file</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<div class="section" id="module-diffpy.srxplanar.srxplanar">
-<span id="srxplanar-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">srxplanar</span></tt> Module<a class="headerlink" href="#module-diffpy.srxplanar.srxplanar" title="Permalink to this headline">¶</a></h2>
-<p>srxplanar main modular</p>
-<dl class="class">
-<dt id="diffpy.srxplanar.srxplanar.SrXplanar">
-<em class="property">class </em><tt class="descclassname">diffpy.srxplanar.srxplanar.</tt><tt class="descname">SrXplanar</tt><big>(</big><em>srxplanarconfig=None</em>, <em>configfile=None</em>, <em>args=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanar.SrXplanar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
-<p>main modular for srxplanar</p>
-<dl class="method">
-<dt id="diffpy.srxplanar.srxplanar.SrXplanar.createMask">
-<tt class="descname">createMask</tt><big>(</big><em>filename=None</em>, <em>pic=None</em>, <em>addmask=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanar.SrXplanar.createMask" title="Permalink to this definition">¶</a></dt>
-<dd><p>create and save a mask according to addmask, pic, 1 stands for masked pixel in saved file</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> &#8211; name of mask file to save, &#8216;mask.npy&#8217; if it is None</li>
-<li><strong>pic</strong> &#8211; 2d image array, may used in generating dynamic mask, Be careful if this one is flipped or not</li>
-<li><strong>addmask</strong> &#8211; list of str, control how to generate mask, see Mask module for detail</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">2d array, 1 stands for masked pixel here</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.srxplanar.SrXplanar.integrate">
-<tt class="descname">integrate</tt><big>(</big><em>image</em>, <em>savename=None</em>, <em>savefile=True</em>, <em>flip=True</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanar.SrXplanar.integrate" title="Permalink to this definition">¶</a></dt>
-<dd><p>integrate 2d image to 1d diffraction pattern, then save to disk</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>image</strong> &#8211; str or 2d array, 
-if str, then read image file using it as file name.
-if 2d array, integrate this 2d array.</li>
-<li><strong>savename</strong> &#8211; str, name of file to save</li>
-<li><strong>savefile</strong> &#8211; boolean, if True, save file to disk, if False, do not save file to disk</li>
-<li><strong>flip</strong> &#8211; boolean, if True and &#8216;image&#8217; is a 2d array, flip this array and integrate it
-if False and &#8216;image&#8217; is a 2d array, directly integrate it.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict, rv[&#8216;chi&#8217;] is a 2d array of integrated intensity, shape is (2, len of intensity) 
-or (3, len of intensity) in [tth or q, intensity, (uncertainty)]. rv[&#8216;filename&#8217;] is the 
-name of file to save to disk</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.srxplanar.SrXplanar.integrateFilelist">
-<tt class="descname">integrateFilelist</tt><big>(</big><em>filelist</em>, <em>summation=None</em>, <em>filename=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanar.SrXplanar.integrateFilelist" title="Permalink to this definition">¶</a></dt>
-<dd><p>process all file in filelist, integrate them separately or together</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filelist</strong> &#8211; list of string, file list (full path)</li>
-<li><strong>summation</strong> &#8211; bool or None, sum all files together or not, if None,
-use self.config.summation</li>
-<li><strong>filename</strong> &#8211; file name of output file</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of dict, in each dict, rv[&#8216;chi&#8217;] is a 2d array of integrated intensity, shape is (2, len of intensity) 
-or (3, len of intensity) as [tth or q, intensity, (uncertainty)]. rv[&#8216;filename&#8217;] is the 
-name of file to save to disk</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.srxplanar.SrXplanar.prepareCalculation">
-<tt class="descname">prepareCalculation</tt><big>(</big><em>pic=None</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanar.SrXplanar.prepareCalculation" title="Permalink to this definition">¶</a></dt>
-<dd><p>prepare data used in calculation</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pic</strong> &#8211; str, list of str, or 2d array, if provided, then recalculate 
-dynamic mask, using pic</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.srxplanar.SrXplanar.process">
-<tt class="descname">process</tt><big>(</big><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanar.SrXplanar.process" title="Permalink to this definition">¶</a></dt>
-<dd><p>process the images according to filenames/includepattern/excludepattern/summation
-by default, it will scan current/tifdirectory and integrate all files match 
-includepattern/excludepattern and/or filenames.</p>
-<p>Usually this one is called from cmd line rather then script.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="diffpy.srxplanar.srxplanar.SrXplanar.updateConfig">
-<tt class="descname">updateConfig</tt><big>(</big><em>filename=None</em>, <em>args=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanar.SrXplanar.updateConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>update config using configfile/args/kwargs, then rerun all prepareCalculation()</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>configfile</strong> &#8211; string, name of config file</li>
-<li><strong>args</strong> &#8211; list of str, usually be sys.argv</li>
-<li><strong>kwargs</strong> &#8211; you can use like &#8216;xbeamcenter=1024&#8217; or a dict to update the value of xbeamcenter</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="diffpy.srxplanar.srxplanar.main">
-<tt class="descclassname">diffpy.srxplanar.srxplanar.</tt><tt class="descname">main</tt><big>(</big><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanar.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>read config and integrate images</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-diffpy.srxplanar.srxplanarconfig">
-<span id="srxplanarconfig-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">srxplanarconfig</span></tt> Module<a class="headerlink" href="#module-diffpy.srxplanar.srxplanarconfig" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig">
-<em class="property">class </em><tt class="descclassname">diffpy.srxplanar.srxplanarconfig.</tt><tt class="descname">SrXplanarConfig</tt><big>(</big><em>filename=None</em>, <em>args=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="diffpy.confutils.html#diffpy.confutils.config.ConfigBase" title="diffpy.confutils.config.ConfigBase"><tt class="xref py py-class docutils literal"><span class="pre">diffpy.confutils.config.ConfigBase</span></tt></a></p>
-<p>config class, based on ConfigBase class in diffpy.confutils</p>
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.addmask">
-<tt class="descname">addmask</tt><em class="property"> = ['edgemask']</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.addmask" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.args">
-<tt class="descname">args</tt><em class="property"> = ArgumentParser(prog='sphinx-build', usage=None, description='\nSrXplanar -- integrate 2D powder diffraction image to 1D with unceratinty propagation\n', version=None, formatter_class=&lt;class 'argparse.RawDescriptionHelpFormatter'&gt;, conflict_handler='error', add_help=True)</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.config">
-<tt class="descname">config</tt><em class="property"> = &lt;ConfigParser.ConfigParser instance at 0x2fdd8c0&gt;</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.config" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.configfile">
-<tt class="descname">configfile</tt><em class="property"> = ''</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.configfile" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.createconfig">
-<tt class="descname">createconfig</tt><em class="property"> = ''</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.createconfig" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.createconfigfull">
-<tt class="descname">createconfigfull</tt><em class="property"> = ''</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.createconfigfull" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.createmask">
-<tt class="descname">createmask</tt><em class="property"> = ''</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.createmask" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.distance">
-<tt class="descname">distance</tt><em class="property"> = 200.0</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.distance" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.excludepattern">
-<tt class="descname">excludepattern</tt><em class="property"> = ['*.dark.tif', '*.raw.tif']</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.excludepattern" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.filenameplus">
-<tt class="descname">filenameplus</tt><em class="property"> = ''</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.filenameplus" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.filenames">
-<tt class="descname">filenames</tt><em class="property"> = []</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.filenames" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.fit2dconfig">
-<tt class="descname">fit2dconfig</tt><em class="property"> = ''</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.fit2dconfig" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.fliphorizontal">
-<tt class="descname">fliphorizontal</tt><em class="property"> = False</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.fliphorizontal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.flipvertical">
-<tt class="descname">flipvertical</tt><em class="property"> = True</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.flipvertical" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.gsasoutput">
-<tt class="descname">gsasoutput</tt><em class="property"> = 'None'</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.gsasoutput" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.includepattern">
-<tt class="descname">includepattern</tt><em class="property"> = ['*.tif', '*.tif.bz2']</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.includepattern" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.integrationspace">
-<tt class="descname">integrationspace</tt><em class="property"> = 'twotheta'</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.integrationspace" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.maskedges">
-<tt class="descname">maskedges</tt><em class="property"> = [20, 20, 20, 20, 100]</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.maskedges" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.nocalculation">
-<tt class="descname">nocalculation</tt><em class="property"> = False</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.nocalculation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.opendirectory">
-<tt class="descname">opendirectory</tt><em class="property"> = '/home/xyang/workspace/diffpy/diffpy.srxplanar/doc/manual'</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.opendirectory" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.output">
-<tt class="descname">output</tt><em class="property"> = ''</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.output" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.polcorrectf">
-<tt class="descname">polcorrectf</tt><em class="property"> = 0.99</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.polcorrectf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.polcorrectionenable">
-<tt class="descname">polcorrectionenable</tt><em class="property"> = True</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.polcorrectionenable" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.qstep">
-<tt class="descname">qstep</tt><em class="property"> = 0.02</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.qstep" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.rotationd">
-<tt class="descname">rotationd</tt><em class="property"> = 0.0</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.rotationd" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.sacorrectionenable">
-<tt class="descname">sacorrectionenable</tt><em class="property"> = True</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.sacorrectionenable" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.savedirectory">
-<tt class="descname">savedirectory</tt><em class="property"> = '/home/xyang/workspace/diffpy/diffpy.srxplanar/doc/manual'</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.savedirectory" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.summation">
-<tt class="descname">summation</tt><em class="property"> = False</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.summation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.tiltd">
-<tt class="descname">tiltd</tt><em class="property"> = 0.0</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.tiltd" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.tthstepd">
-<tt class="descname">tthstepd</tt><em class="property"> = 0.02</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.tthstepd" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.uncertaintyenable">
-<tt class="descname">uncertaintyenable</tt><em class="property"> = True</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.uncertaintyenable" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.wavelength">
-<tt class="descname">wavelength</tt><em class="property"> = 0.1</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.wavelength" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.xbeamcenter">
-<tt class="descname">xbeamcenter</tt><em class="property"> = 1024.0</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.xbeamcenter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.xdimension">
-<tt class="descname">xdimension</tt><em class="property"> = 2048</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.xdimension" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.xpixelsize">
-<tt class="descname">xpixelsize</tt><em class="property"> = 0.2</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.xpixelsize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.ybeamcenter">
-<tt class="descname">ybeamcenter</tt><em class="property"> = 1024.0</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.ybeamcenter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.ydimension">
-<tt class="descname">ydimension</tt><em class="property"> = 2048</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.ydimension" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.ypixelsize">
-<tt class="descname">ypixelsize</tt><em class="property"> = 0.2</em><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.SrXplanarConfig.ypixelsize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="diffpy.srxplanar.srxplanarconfig.checkMax">
-<tt class="descclassname">diffpy.srxplanar.srxplanarconfig.</tt><tt class="descname">checkMax</tt><big>(</big><em>config</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.checkMax" title="Permalink to this definition">¶</a></dt>
-<dd><p>calculate the max twotheta angle (and q) of a detector with current geometry</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> &#8211; SrXplanarConfig, config instance stores the geometry parameters</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">[tthmaxd, qmax], max twotheta angle(in degree) and max q value of current
-detector.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
-<dt id="diffpy.srxplanar.srxplanarconfig.parseFit2D">
-<tt class="descclassname">diffpy.srxplanar.srxplanarconfig.</tt><tt class="descname">parseFit2D</tt><big>(</big><em>filename</em><big>)</big><a class="headerlink" href="#diffpy.srxplanar.srxplanarconfig.parseFit2D" title="Permalink to this definition">¶</a></dt>
-<dd><p>load parameters from fit2d calibration information. copy/paste the fit2d calibration 
-results to a txt file. this function will load xbeamcenter, ybeamceter... from the file</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> &#8211; str, file name (with full path if not in current dir) of fit2d file,
-or a string containing the calibraiton parameters copy from fit2d.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">dict, including &#8216;xbeamcenter&#8217;, &#8216;ybeamcenter&#8217;, &#8216;wavelength&#8217;, &#8216;rotationd&#8217;(angle of ratation), 
-&#8216;tiltd&#8217;(angle of tilt rotation)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<div class="section" id="module-diffpy.srxplanar.version">
-<span id="version-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">version</span></tt> Module<a class="headerlink" href="#module-diffpy.srxplanar.version" title="Permalink to this headline">¶</a></h2>
-<p>Definition of __version__, __date__, __gitsha__.</p>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">srxplanar Package</a><ul>
-<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">srxplanar</span></tt> Package</a></li>
-<li><a class="reference internal" href="#module-diffpy.srxplanar.calculate"><tt class="docutils literal"><span class="pre">calculate</span></tt> Module</a></li>
-<li><a class="reference internal" href="#module-diffpy.srxplanar.loadimage"><tt class="docutils literal"><span class="pre">loadimage</span></tt> Module</a></li>
-<li><a class="reference internal" href="#module-diffpy.srxplanar.mask"><tt class="docutils literal"><span class="pre">mask</span></tt> Module</a></li>
-<li><a class="reference internal" href="#module-diffpy.srxplanar.saveresults"><tt class="docutils literal"><span class="pre">saveresults</span></tt> Module</a></li>
-<li><a class="reference internal" href="#module-diffpy.srxplanar.srxplanar"><tt class="docutils literal"><span class="pre">srxplanar</span></tt> Module</a></li>
-<li><a class="reference internal" href="#module-diffpy.srxplanar.srxplanarconfig"><tt class="docutils literal"><span class="pre">srxplanarconfig</span></tt> Module</a></li>
-<li><a class="reference internal" href="#module-diffpy.srxplanar.version"><tt class="docutils literal"><span class="pre">version</span></tt> Module</a></li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-1">diffpy.srxplanar.calculate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-2">diffpy.srxplanar.loadimage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-3">diffpy.srxplanar.mask module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-4">diffpy.srxplanar.saveresults module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-5">diffpy.srxplanar.srxplanar module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-6">diffpy.srxplanar.srxplanarconfig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-7">diffpy.srxplanar.version module</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="diffpy.confutils.html"
-                        title="previous chapter">confutils Package</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/api/diffpy.srxplanar.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
-      <div class="clearer"></div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">diffpy.srxplanar</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">diffpy.srxplanar package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/diffpy/diffpy.srxplanar/blob/main/docs/source/api/diffpy.srxplanar.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="title">
+<h1>diffpy.srxplanar package<a class="headerlink" href="#title" title="Link to this heading"></a></h1>
+<p id="module-diffpy.srxplanar">Distance Printer, calculate the inter atomic distances.</p>
+<p>Part of xPDFsuite</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-1">
+<h2>diffpy.srxplanar.calculate module<a class="headerlink" href="#module-1" title="Link to this heading"></a></h2>
+</section>
+<section id="module-2">
+<h2>diffpy.srxplanar.loadimage module<a class="headerlink" href="#module-2" title="Link to this heading"></a></h2>
+</section>
+<section id="module-3">
+<h2>diffpy.srxplanar.mask module<a class="headerlink" href="#module-3" title="Link to this heading"></a></h2>
+</section>
+<section id="module-4">
+<h2>diffpy.srxplanar.saveresults module<a class="headerlink" href="#module-4" title="Link to this heading"></a></h2>
+</section>
+<section id="module-5">
+<h2>diffpy.srxplanar.srxplanar module<a class="headerlink" href="#module-5" title="Link to this heading"></a></h2>
+</section>
+<section id="module-6">
+<h2>diffpy.srxplanar.srxplanarconfig module<a class="headerlink" href="#module-6" title="Link to this heading"></a></h2>
+</section>
+<section id="module-7">
+<h2>diffpy.srxplanar.version module<a class="headerlink" href="#module-7" title="Link to this heading"></a></h2>
+<p id="module-diffpy.srxplanar.version">Definition of __version__.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="diffpy.srxplanar documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="diffpy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="diffpy.confutils.html" title="confutils Package"
-             >previous</a> |</li>
-        <li><a href="../index.html">diffpy.srxplanar  documentation</a> &raquo;</li>
-          <li><a href="diffpy.html" >diffpy Package</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer">
-        &copy; Copyright 2014, Columbia University.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-    </div>
-  </body>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>
