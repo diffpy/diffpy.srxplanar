@@ -21,7 +21,7 @@
 .. |Codecov| image:: https://codecov.io/gh/diffpy/diffpy.srxplanar/branch/main/graph/badge.svg
         :target: https://codecov.io/gh/diffpy/diffpy.srxplanar
 
-.. |Forge| image:: https://img.shields.io/conda/vn/conda-forge/diffpy.cmi
+.. |Forge| image:: https://img.shields.io/conda/vn/conda-forge/diffpy.srxplanar
         :target: https://anaconda.org/conda-forge/diffpy.srxplanar
 
 .. |PR| image:: https://img.shields.io/badge/PR-Welcome-29ab47ff
