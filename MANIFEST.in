@@ -1,6 +1,7 @@
 graft src
 graft tests
 graft requirements
+graft docs/examples
 
 include AUTHORS.rst LICENSE*.rst README.rst
 
