@@ -114,12 +114,13 @@ class SaveResults(object):
 
 
 def writeGSASStr(name, mode, tth, iobs, esd=None):
-    """Return string of integrated intensities in GSAS format. :param
-    mode: string, gsas file type, could be 'std', 'esd', 'fxye' (gsas
-    format) :param tth: ndarray, two theta angle :param iobs: ndarray,
-    Xrd intensity :param esd: ndarray, optional error value of
-    intensity.
+    """Return string of integrated intensities in GSAS format.
 
+    :param mode: string, gsas file type, could be 'std', 'esd', 'fxye'
+        (gsas format)
+    :param tth: ndarray, two theta angle
+    :param iobs: ndarray, Xrd intensity
+    :param esd: ndarray, optional error value of intensity.
     :return: string, a string to be saved to file
     """
     maxintensity = 999999

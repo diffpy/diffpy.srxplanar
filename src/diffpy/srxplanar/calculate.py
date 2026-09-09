@@ -130,7 +130,6 @@ class Calculate(object):
         :return: 2d array, [tthorq, intensity, unceratinty] or [tthorq,
             intensity]
         """
-
         intensity = self.calculateIntensity(pic)
         if self.uncertaintyenable:
             std = np.sqrt(self.calculateVariance(pic))
@@ -177,7 +176,6 @@ class Calculate(object):
             corrected
         :return: 1d array, 1D integrated intensity
         """
-
         maskedmatrix, pic = self.getMaskedmatrixPic(pic)
 
         intensity = np.histogram(maskedmatrix, self.bin_edges, weights=pic)[0]
@@ -246,7 +244,6 @@ class Calculate(object):
         :return: 2d array, two theta angle (in radians) of each pixel's
             center
         """
-
         sinr = np.sin(-self.rotation)
         cosr = np.cos(-self.rotation)
         sint = np.sin(self.tilt)
@@ -302,9 +299,11 @@ class Calculate(object):
         return Q
 
     def genCorrectionMatrix(self):
-        """Generate correction matrix. multiple the 2D raw counts array
-        by this correction matrix to get corrected raw counts. It will
-        calculate solid angle correction or polarization correction.
+        """Generate correction matrix.
+
+        Multiply the 2D raw counts array by this correction matrix to
+        get corrected raw counts. It will calculate solid angle
+        correction or polarization correction.
 
         :return: 2d array, correction matrix to apply on the image
         """

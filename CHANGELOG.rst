@@ -20,4 +20,3 @@ Release notes
 
 * Remove local clone of srxconfutils and replace with package from pypi
 * Removed glob of user home in load-image
-

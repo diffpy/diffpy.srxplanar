@@ -43,3 +43,6 @@ nosetests.xml
 setup.cfg
 /diffpy/srxplanar/version.cfg
 /diffpy/confutils/version.cfg
+
+# PyCharm / IDEs
+.idea/

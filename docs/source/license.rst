@@ -10,6 +10,7 @@ OPEN SOURCE LICENSE AGREEMENT
 BSD 3-Clause License
 
 Copyright (c) 2008-2025, The Trustees of Columbia University in the City of New York.
+Copyright (c) 2026, Billinge Group Members and The DiffPy Team.
 All Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without

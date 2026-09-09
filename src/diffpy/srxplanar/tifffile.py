@@ -2283,7 +2283,6 @@ def read_nih_image_header(fh, byteorder, dtype, count):
 
 def imagej_metadata(data, bytecounts, byteorder):
     """Return dict from ImageJ meta data tag value."""
-
     _str = str if sys.version_info[0] < 3 else lambda x: str(x, "cp1252")
 
     def read_string(data, byteorder):
@@ -2776,11 +2775,12 @@ def datetime_from_timestamp(n, epoch=datetime.datetime.fromordinal(693594)):
 
 
 def test_tifffile(directory="testimages", verbose=True):
-    """Read all images in directory. Print error message on failure.
+    """Read all images in directory.
 
-    Examples
-    --------
-    >>> test_tifffile(verbose=False)
+    Print error message on failure.
+        Examples
+        --------
+        >>> test_tifffile(verbose=False)
     """
     successful = 0
     failed = 0

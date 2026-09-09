@@ -69,8 +69,9 @@ class Mask(object):
         return
 
     def staticMask(self, maskfile=None):
-        """Create a static mask according existing mask file. This mask
-        remain unchanged for different images.
+        """Create a static mask according existing mask file.
+
+        This mask remain unchanged for different images.
 
         :param maskfile: string, file name of mask,
             mask file supported: .npy, .tif file, ATTN: mask in .npy form
@@ -102,8 +103,9 @@ class Mask(object):
         darkpixelmask=None,
         avgmask=None,
     ):
-        """Create a dynamic mask according to image array. This mask
-        changes for different images.
+        """Create a dynamic mask according to image array.
+
+        This mask changes for different images.
 
         :param pic: 2d array, image array to be processed
         :param dymask: 2d array, mask array used in average mask
@@ -116,7 +118,6 @@ class Mask(object):
             to the average intensity at the similar diffraction angle
         :return: 2d array of boolean, 1 stands for masked pixel
         """
-
         brightpixelmask = (
             self.brightpixelmask
             if brightpixelmask is None
@@ -232,10 +233,11 @@ class Mask(object):
         return ind
 
     def undersample(self, undersamplerate):
-        """A special mask used for undesampling image. It will create a
-        mask that discard (total number*(1-undersamplerate)) pixels
-        :param undersamplerate: float, 0~1, ratio of pixels to keep.
+        """A special mask used for undesampling image.
 
+        It will create a mask that discard (total
+        number*(1-undersamplerate)) pixels
+        :param undersamplerate: float, 0~1, ratio of pixels to keep.
         :return: 2d array of boolean, 1 stands for masked pixel
         """
         mask = (
@@ -256,10 +258,11 @@ class Mask(object):
         return pic
 
     def saveMask(self, filename, pic=None, addmask=None):
-        """Generate a mask according to the addmask and pic. save it to
-        .npy. 1 stands for masked pixel the mask has same order as the
-        pic, which means if the pic is flipped, the mask is flipped
-        (when pic is loaded though loadimage, it is flipped)
+        """Generate a mask according to the addmask and pic.
+
+        save it to .npy. 1 stands for masked pixel the mask has same
+        order as the pic, which means if the pic is flipped, the mask is
+        flipped (when pic is loaded though loadimage, it is flipped)
 
         :param filename: str, filename of mask file to be save
         :param pic: 2d array, image array

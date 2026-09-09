@@ -7,8 +7,9 @@ def main():
     parser = argparse.ArgumentParser(
         prog="diffpy.srxplanar",
         description=(
-            "2D diffraction image integration using non "
-            "splitting pixel algorithm\n\nFor more information, visit: "
+            "2D diffraction image integration using non splitting "
+            "pixel algorithm\n\n"
+            "For more information, visit: "
             "https://github.com/diffpy/diffpy.srxplanar/"
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,

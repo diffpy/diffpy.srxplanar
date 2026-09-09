@@ -15,8 +15,8 @@
 .. |Black| image:: https://img.shields.io/badge/code_style-black-black
         :target: https://github.com/psf/black
 
-.. |CI| image:: https://github.com/diffpy/diffpy.cmi/actions/workflows/matrix-and-codecov-on-merge-to-main.yml/badge.svg
-        :target: https://github.com/diffpy/diffpy.srxplanar/actions/workflows/matrix-and-codecov-on-merge-to-main.yml
+.. |CI| image:: https://github.com/diffpy/diffpy.srxplanar/actions/workflows/matrix-and-codecov.yml/badge.svg
+        :target: https://github.com/diffpy/diffpy.srxplanar/actions/workflows/matrix-and-codecov.yml
 
 .. |Codecov| image:: https://codecov.io/gh/diffpy/diffpy.srxplanar/branch/main/graph/badge.svg
         :target: https://codecov.io/gh/diffpy/diffpy.srxplanar
@@ -36,7 +36,7 @@
 .. |Tracking| image:: https://img.shields.io/badge/issue_tracking-github-blue
         :target: https://github.com/diffpy/diffpy.srxplanar/issues
 
-This is part of xPDFsuite package.
+2D diffraction image integration using non splitting pixel algorithm
 
 diffpy.srxplanar package provides 2D diffraction image integration using
 non splitting pixel algorithm. And it can estimate and propagate statistic
@@ -118,7 +118,7 @@ Support and Contribute
 
 If you see a bug or want to request a feature, please `report it as an issue <https://github.com/diffpy/diffpy.srxplanar/issues>`_ and/or `submit a fix as a PR <https://github.com/diffpy/diffpy.srxplanar/pulls>`_.
 
-Feel free to fork the project. To install diffpy.srxplanar
+Feel free to fork the project and contribute. To install diffpy.srxplanar
 in a development mode, with its sources being directly used by Python
 rather than copied to a package directory, use the following in the root
 directory ::
@@ -144,7 +144,7 @@ Before contributing, please read our `Code of Conduct <https://github.com/diffpy
 Contact
 -------
 
-For more information on diffpy.srxplanar please visit the project `web-page <https://diffpy.github.io/>`_ or email Simon Billinge at sb2896@columbia.edu.
+For more information on diffpy.srxplanar please visit the project `web-page <https://diffpy.github.io/>`_ or email the maintainers ``Simon Billinge(sbillinge@ucsb.edu)``.
 
 Acknowledgements
 ----------------

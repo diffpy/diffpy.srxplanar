@@ -526,7 +526,6 @@ class SrXplanarConfig(ConfigBase):
 
         add degree/rad delegation for rotation, tilt, tthstep, tthmax
         """
-
         for name in ["rotation", "tilt", "tthstep", "tthmax"]:
             setattr(self.__class__, name, _configPropertyRad(name + "d"))
         # cls._configlist['Experiment'].extend([
@@ -568,7 +567,6 @@ class SrXplanarConfig(ConfigBase):
 
         :param kwargs: optional kwargs
         """
-
         if (self.createconfig != "") and (self.createconfig is not None):
             self.nocalculation = True
         if (self.createconfigfull != "") and (

@@ -67,8 +67,10 @@ class LoadImage(object):
         return pic
 
     def load_image(self, filename):
-        """Load image file. If loading fails (e.g. incomplete file),
-        retry for 5 seconds (10×0.5s).
+        """Load image file.
+
+        If loading fails (e.g. incomplete file), retry for 5 seconds
+        (10×0.5s).
 
         :param filename: str or Path, image file name or path
         :return: 2D ndarray, flipped image array
@@ -119,7 +121,6 @@ class LoadImage(object):
             file
         :return: list of str, a list of filenames
         """
-
         fileset = self.genFileSet(
             filenames, opendir, includepattern, excludepattern, fullpath
         )

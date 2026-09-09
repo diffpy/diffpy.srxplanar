@@ -208,7 +208,6 @@ class SrXplanar(object):
             in [tth or q, intensity, (uncertainty)].
             rv['filename'] is the name of file to save to disk
         """
-
         rv = {}
         self.pic = self._getPic(image, flip, correction)
 

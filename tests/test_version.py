@@ -1,6 +1,6 @@
 """Unit tests for __version__.py."""
 
-import diffpy.srxplanar
+import diffpy.srxplanar  # noqa
 
 
 def test_package_version():

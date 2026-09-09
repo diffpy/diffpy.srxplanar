@@ -356,7 +356,6 @@ def selfCalibrate(
 
     :return: list, refined parameter
     """
-
     # lineCalibrate(srx, image)
 
     p = []

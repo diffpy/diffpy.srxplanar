@@ -1,9 +1,9 @@
-name: CI
+name: Matrix and Codecov
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   release:
     types:
       - prereleased
@@ -17,6 +17,5 @@ jobs:
       project: diffpy.srxplanar
       c_extension: false
       headless: false
-
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
